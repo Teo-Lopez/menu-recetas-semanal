@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2f4a3a" />
+  <title>Guisantes con jamón y huevo · Recetario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef3ee;
+      --bg-deep: #e2ebe3;
+      --surface: #f7faf7;
+      --ink: #1c2a22;
+      --muted: #5a6b60;
+      --line: #c5d4c8;
+      --accent: #2f4a3a;
+      --accent-soft: #3f634f;
+      --highlight: #c4a35a;
+      --nav-h: 3.25rem;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(28, 42, 34, 0.08);
+      --max: 760px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Outfit", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 0.75rem); }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #d8e8d9 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #e8e0c8 0%, transparent 45%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+      line-height: 1.55;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: var(--accent-soft); }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(47, 74, 58, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+    }
+    .site-nav__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav__inner::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      flex: 0 0 auto;
+      color: #f2f7f3;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.14);
+      outline: none;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3.5rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+    }
+    .back:hover { text-decoration: underline; }
+
+    .hero-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--bg-deep);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      margin-bottom: 1.15rem;
+    }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--highlight);
+      margin-bottom: 0.4rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 5vw, 2.35rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      list-style: none;
+    }
+    .meta li {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 0.75rem);
+      margin-bottom: 1.75rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      min-width: 260px;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.9rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #e5efe7;
+      font-weight: 650;
+      color: var(--accent);
+    }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: #f3f8f4; }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow);
+    }
+    .step h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    .step ol, .step ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+    .step li { margin-bottom: 0.35rem; }
+    .step p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .step p + ul { margin-top: 0.5rem; }
+
+    .store {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 640px) {
+      .store { grid-template-columns: 1fr 1fr; }
+    }
+    .store-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .store-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    .store-card__body {
+      padding: 0.9rem 1rem 1.05rem;
+    }
+    .store-card__body h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .store-card__body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .callout {
+      background: #fff8e8;
+      border: 1px solid #e8d5a3;
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin-top: 1rem;
+    }
+    .callout strong { color: var(--accent); }
+    .callout p { margin: 0; color: var(--ink); }
+
+    .nav-recipes {
+      display: grid;
+      gap: 0.65rem;
+    }
+    @media (min-width: 520px) {
+      .nav-recipes { grid-template-columns: 1fr 1fr; }
+    }
+    .nav-recipes a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .nav-recipes .prev {
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--line);
+    }
+    .nav-recipes .next {
+      background: var(--accent);
+      color: #f2f7f3;
+    }
+    .nav-recipes .next:hover { background: var(--accent-soft); color: #fff; }
+    .nav-recipes .prev:hover { background: #e8f0e8; }
+    .nav-recipes span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 0.15rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 1.5rem 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Secciones">
+    <div class="site-nav__inner">
+      <a href="../index.html">Menú</a>
+      <a href="#ingredientes">Ingredientes</a>
+      <a href="#preparacion">Preparación</a>
+      <a href="#conservacion">Conservar</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <a class="back" href="../index.html#menu">← Volver al menú semanal</a>
+
+    <div class="hero-img">
+      <img
+        src="https://images.openai.com/static-rsc-4/shMNeLUvBYlvak7A6hzsKM1yj8e0MKu8MRfN78p0A-gAWtPrNHgz2PaQIy0SUzQsBK5t7r_UmuaGpTSe2V2PxKSgvr7SlPOLhBj2r5rf6DbDfLh_H5_ty4dEVxWh6OxQb9TGDiVG-n2L5_hIHGCFtzJZSt1cHj3D6vHXAPHzSAU?purpose=inline"
+        alt="Guisantes con jamón y huevo"
+      />
+    </div>
+
+    <p class="eyebrow">Receta 2 · Lunes · Cena</p>
+    <h1>Guisantes con jamón y huevo</h1>
+
+    <ul class="meta">
+      <li>Batch cooking</li>
+      <li>2 personas</li>
+      <li>10 min prep.</li>
+      <li>20 min cocción</li>
+    </ul>
+
+    <section id="ingredientes">
+      <h2>Ingredientes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Guisantes</td><td>300 g</td></tr>
+            <tr><td>Jamón serrano en taquitos</td><td>80 g</td></tr>
+            <tr><td>Huevos</td><td>2 unidades</td></tr>
+            <tr><td>Cebolla</td><td>½ unidad</td></tr>
+            <tr><td>Ajo</td><td>1 diente</td></tr>
+            <tr><td>Aceite de oliva</td><td>1 cucharada</td></tr>
+            <tr><td>Agua o caldo</td><td>100 ml</td></tr>
+            <tr><td>Pimienta negra</td><td>Al gusto</td></tr>
+            <tr><td>Sal</td><td>Al gusto</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="preparacion">
+      <h2>Preparación</h2>
+
+      <article class="step">
+        <h3>1. Preparar los ingredientes</h3>
+        <ul>
+          <li>Pela y pica la cebolla en trozos pequeños.</li>
+          <li>Pela y pica el ajo.</li>
+          <li>Si utilizas guisantes congelados, no necesitas descongelarlos previamente.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>2. Preparar el sofrito</h3>
+        <ul>
+          <li>Calienta el aceite en una sartén amplia.</li>
+          <li>Añade la cebolla y cocina a fuego medio durante 5 minutos.</li>
+          <li>Incorpora el ajo y cocina 1 minuto más.</li>
+          <li>Añade los taquitos de jamón y saltea durante 2 minutos.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>3. Cocinar los guisantes</h3>
+        <ul>
+          <li>Incorpora los guisantes.</li>
+          <li>Añade los 100 ml de agua o caldo.</li>
+          <li>Tapa la sartén y cocina durante 8–10 minutos a fuego medio.</li>
+          <li>Remueve de vez en cuando.</li>
+          <li>Comprueba que los guisantes estén tiernos.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>4. Añadir los huevos</h3>
+        <p>Tienes dos opciones:</p>
+        <ul>
+          <li><strong>Huevos escalfados:</strong> haz dos pequeños huecos entre los guisantes, casca los huevos encima, tapa la sartén y cocina durante 4–5 minutos.</li>
+          <li><strong>Huevos cocidos:</strong> cuece los huevos aparte durante 9–10 minutos, enfríalos, pélalos y córtalos por la mitad. Colócalos sobre los guisantes al servir.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>5. Ajustar el sabor</h3>
+        <ul>
+          <li>Añade pimienta negra.</li>
+          <li>Prueba antes de añadir sal, porque el jamón ya aporta bastante.</li>
+          <li>Si queda demasiado líquido, cocina un par de minutos destapado.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="conservacion">
+      <h2>Conservación para batch cooking</h2>
+      <div class="store">
+        <article class="store-card">
+          <img
+            src="https://images.openai.com/static-rsc-4/6tkyzRINIZgER7jBsE3-KOmiFFDfQMrqK4dMCoE3HvKUDq938_oUOsyV7Lc0HO9uWZbF5tUBP5rhxsmfdilvCPO1f98VQLbs7LPykuwMNkleOwnDy-OPfFQw9m5NVi28QqEyHNrkJ8mQnHCc2QMn6fnKKB-T3OtQvDsUDRuHoPI?purpose=inline"
+            alt="Guisantes con jamón en recipiente"
+            loading="lazy"
+          />
+          <div class="store-card__body">
+            <h3>Refrigeración</h3>
+            <p>
+              Guarda los guisantes con jamón en un recipiente hermético durante
+              3–4 días. Preferiblemente conserva los huevos aparte.
+            </p>
+          </div>
+        </article>
+        <article class="store-card">
+          <img
+            src="https://images.openai.com/static-rsc-4/_RDUfu11QPjW4AwcJBjSX2kQrMxUI8fAzf2fBxNPgfPmSBI30pi7CzkvxxoFciDyvvVLxlcwTXAewS8yW1oJGo7Dp-yz1ZhlsIdHGI_fhf4kqYLOkzXP8DF470hEe5aY-KGAagb-zoMLorMq_fNSotSuPQifZGwBJQ-SAa0sUAY?purpose=inline"
+            alt="Guisantes con jamón para congelar"
+            loading="lazy"
+          />
+          <div class="store-card__body">
+            <h3>Congelación</h3>
+            <p>
+              Puedes congelar los guisantes con jamón sin los huevos. Descongela
+              en la nevera y añade el huevo recién preparado.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <div class="callout">
+        <p>
+          <strong>Consejo:</strong> si quieres una salsa más espesa y cremosa,
+          aplasta unas cucharadas de guisantes contra la pared de la sartén y
+          mézclalos con el caldo.
+        </p>
+      </div>
+    </section>
+
+    <div class="nav-recipes">
+      <a class="prev" href="01-pollo-al-horno.html">
+        ← Anterior
+        <span>Pollo al horno</span>
+      </a>
+      <a class="next" href="03-lentejas-estofadas.html">
+        Siguiente →
+        <span>Lentejas estofadas</span>
+      </a>
+    </div>
+
+    <footer>Receta 2 de 14 · Menú semanal económico</footer>
+  </div>
+</body>
+</html>

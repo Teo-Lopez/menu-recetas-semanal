@@ -1,1155 +1,1519 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#2f4a3a" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>Menú semanal económico · 2 personas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --bg: #eef3ee;
-      --bg-deep: #e2ebe3;
-      --surface: #f7faf7;
-      --ink: #1c2a22;
-      --muted: #5a6b60;
-      --line: #c5d4c8;
-      --accent: #2f4a3a;
-      --accent-soft: #3f634f;
-      --highlight: #c4a35a;
-      --ok: #2d6a4f;
-      --nav-h: 3.25rem;
-      --radius: 12px;
-      --shadow: 0 10px 30px rgba(28, 42, 34, 0.08);
-      --max: 920px;
-      --font-display: "Fraunces", Georgia, serif;
-      --font-body: "Outfit", system-ui, sans-serif;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#2f4a3a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Menú semanal económico · 2 personas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #eef3ee;
+        --bg-deep: #e2ebe3;
+        --surface: #f7faf7;
+        --ink: #1c2a22;
+        --muted: #5a6b60;
+        --line: #c5d4c8;
+        --accent: #2f4a3a;
+        --accent-soft: #3f634f;
+        --highlight: #c4a35a;
+        --ok: #2d6a4f;
+        --nav-h: 3.25rem;
+        --radius: 12px;
+        --shadow: 0 10px 30px rgba(28, 42, 34, 0.08);
+        --max: 920px;
+        --font-display: 'Fraunces', Georgia, serif;
+        --font-body: 'Outfit', system-ui, sans-serif;
+      }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 0.75rem); }
-    body {
-      margin: 0;
-      font-family: var(--font-body);
-      color: var(--ink);
-      background:
-        radial-gradient(ellipse 80% 50% at 10% -10%, #d8e8d9 0%, transparent 55%),
-        radial-gradient(ellipse 60% 40% at 100% 0%, #e8e0c8 0%, transparent 45%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      background-attachment: fixed;
-      line-height: 1.55;
-      -webkit-tap-highlight-color: transparent;
-    }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: calc(var(--nav-h) + 0.75rem);
+      }
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        color: var(--ink);
+        background:
+          radial-gradient(
+            ellipse 80% 50% at 10% -10%,
+            #d8e8d9 0%,
+            transparent 55%
+          ),
+          radial-gradient(
+            ellipse 60% 40% at 100% 0%,
+            #e8e0c8 0%,
+            transparent 45%
+          ),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+        background-attachment: fixed;
+        line-height: 1.55;
+        -webkit-tap-highlight-color: transparent;
+      }
 
-    img { max-width: 100%; display: block; height: auto; }
-    a { color: var(--accent-soft); }
-    button { font: inherit; cursor: pointer; }
+      img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+      }
+      a {
+        color: var(--accent-soft);
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
 
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      height: var(--nav-h);
-      background: rgba(47, 74, 58, 0.94);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
-    }
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: var(--nav-h);
+        background: rgba(47, 74, 58, 0.94);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+      }
 
-    .site-nav__inner {
-      max-width: var(--max);
-      margin: 0 auto;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0 0.5rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-    }
-    .site-nav__inner::-webkit-scrollbar { display: none; }
+      .site-nav__inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0 0.5rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+      }
+      .site-nav__inner::-webkit-scrollbar {
+        display: none;
+      }
 
-    .site-nav a {
-      flex: 0 0 auto;
-      color: #f2f7f3;
-      text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      padding: 0.45rem 0.7rem;
-      border-radius: 999px;
-      white-space: nowrap;
-      transition: background 0.15s ease;
-    }
-    .site-nav a:hover,
-    .site-nav a:focus-visible {
-      background: rgba(255, 255, 255, 0.14);
-      outline: none;
-    }
+      .site-nav a {
+        flex: 0 0 auto;
+        color: #f2f7f3;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 0.45rem 0.7rem;
+        border-radius: 999px;
+        white-space: nowrap;
+        transition: background 0.15s ease;
+      }
+      .site-nav a:hover,
+      .site-nav a:focus-visible {
+        background: rgba(255, 255, 255, 0.14);
+        outline: none;
+      }
 
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 1.25rem 1rem 3.5rem;
-    }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 1.25rem 1rem 3.5rem;
+      }
 
-    .page {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
+      .page {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
 
-    /* Móvil: lista arriba; desktop: al final */
-    #lista { order: -1; }
-    @media (min-width: 900px) {
-      #lista { order: 0; }
-    }
-
-    .hero {
-      padding: 1.25rem 0 0.25rem;
-    }
-    .hero__eyebrow {
-      display: inline-block;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent-soft);
-      margin-bottom: 0.5rem;
-    }
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(1.85rem, 5vw, 2.75rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin: 0 0 0.75rem;
-      color: var(--accent);
-    }
-    .hero__lead {
-      margin: 0 0 1rem;
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 40rem;
-    }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .chips li {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--accent);
-    }
-
-    .intro-card {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.1rem 1.15rem;
-      box-shadow: var(--shadow);
-    }
-    .intro-card p { margin: 0 0 0.85rem; }
-    .intro-card ul {
-      margin: 0;
-      padding-left: 1.15rem;
-      color: var(--muted);
-    }
-    .intro-card li { margin-bottom: 0.35rem; }
-    .budget-note {
-      margin-top: 1rem;
-      padding: 0.75rem 0.9rem;
-      background: #e8f0e5;
-      border-left: 3px solid var(--highlight);
-      border-radius: 0 8px 8px 0;
-      font-weight: 500;
-    }
-
-    section {
-      scroll-margin-top: calc(var(--nav-h) + 0.75rem);
-    }
-
-    .section-head {
-      margin: 0.5rem 0 1rem;
-    }
-    .section-head h2 {
-      font-family: var(--font-display);
-      font-size: clamp(1.45rem, 3.5vw, 1.9rem);
-      margin: 0 0 0.35rem;
-      color: var(--accent);
-    }
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .day {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      margin-bottom: 1rem;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .day__header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.35rem 1rem;
-      padding: 0.85rem 1rem;
-      background: linear-gradient(90deg, #2f4a3a, #3f634f);
-      color: #f4f8f5;
-    }
-    .day__header h3 {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-    }
-    .day__tag {
-      font-size: 0.8rem;
-      opacity: 0.9;
-      font-weight: 500;
-    }
-    .meals {
-      display: grid;
-      gap: 0;
-    }
-    @media (min-width: 700px) {
-      .meals { grid-template-columns: 1fr 1fr; }
-      .meal + .meal { border-left: 1px solid var(--line); }
-    }
-    .meal {
-      padding: 1rem;
-    }
-    .meal + .meal {
-      border-top: 1px solid var(--line);
-    }
-    @media (min-width: 700px) {
-      .meal + .meal { border-top: none; }
-    }
-    .meal__label {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--highlight);
-      margin: 0 0 0.35rem;
-    }
-    .meal h4 {
-      margin: 0 0 0.5rem;
-      font-size: 1.05rem;
-      font-weight: 650;
-    }
-    .meal p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-    .meal__img {
-      margin: 0 0 0.75rem;
-      border-radius: 8px;
-      overflow: hidden;
-      aspect-ratio: 16 / 10;
-      background: var(--bg-deep);
-    }
-    .meal__img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .shop {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-    .shop__top {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.75rem;
-      padding: 1rem 1.1rem;
-      background: linear-gradient(135deg, #2f4a3a 0%, #456a54 100%);
-      color: #f4f8f5;
-    }
-    .shop__top h2 {
-      font-family: var(--font-display);
-      margin: 0;
-      font-size: 1.4rem;
-    }
-    .shop__meta {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-    }
-    .progress {
-      font-weight: 700;
-      font-variant-numeric: tabular-nums;
-      background: rgba(255,255,255,0.15);
-      padding: 0.35rem 0.7rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-    }
-    .btn-reset {
-      border: 1px solid rgba(255,255,255,0.35);
-      background: transparent;
-      color: #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-    .btn-reset:hover { background: rgba(255,255,255,0.12); }
-
-    .shop__intro {
-      padding: 0.9rem 1.1rem 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .shop-group {
-      padding: 0.85rem 1.1rem 0.25rem;
-    }
-    .shop-group__head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 0.5rem;
-      margin-bottom: 0.55rem;
-      padding-bottom: 0.35rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .shop-group__head h3 {
-      margin: 0;
-      font-size: 1rem;
-      color: var(--accent);
-    }
-    .shop-group__price {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    .shop-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.7rem;
-      padding: 0.55rem 0.25rem;
-      border-radius: 8px;
-      cursor: pointer;
-      user-select: none;
-      -webkit-user-select: none;
-      transition: background 0.12s ease;
-    }
-    .shop-item:hover { background: #eef4ef; }
-    .shop-item input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-    .check {
-      flex: 0 0 auto;
-      width: 1.35rem;
-      height: 1.35rem;
-      margin-top: 0.1rem;
-      border: 2px solid var(--accent);
-      border-radius: 6px;
-      display: grid;
-      place-items: center;
-      transition: background 0.15s, border-color 0.15s;
-    }
-    .check svg {
-      width: 0.85rem;
-      height: 0.85rem;
-      opacity: 0;
-      stroke: #fff;
-      stroke-width: 3;
-      fill: none;
-    }
-    .shop-item.is-checked .check {
-      background: var(--ok);
-      border-color: var(--ok);
-    }
-    .shop-item.is-checked .check svg { opacity: 1; }
-    .shop-item.is-checked .shop-item__text {
-      text-decoration: line-through;
-      color: var(--muted);
-      opacity: 0.75;
-    }
-    .shop-item__text {
-      display: flex;
-      flex-direction: column;
-      gap: 0.1rem;
-      min-width: 0;
-    }
-    .shop-item__name { font-weight: 600; }
-    .shop-item__qty {
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .shop__footer {
-      padding: 1rem 1.1rem 1.25rem;
-      border-top: 1px solid var(--line);
-      margin-top: 0.5rem;
-    }
-    .shop__total {
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-      margin: 0 0 0.5rem;
-      color: var(--accent);
-    }
-    .shop__note {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .table-wrap {
-      overflow-x: auto;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 1rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.92rem;
-      min-width: 280px;
-    }
-    th, td {
-      text-align: left;
-      padding: 0.7rem 0.9rem;
-      border-bottom: 1px solid var(--line);
-      vertical-align: top;
-    }
-    th {
-      background: #e5efe7;
-      font-weight: 650;
-      color: var(--accent);
-      white-space: nowrap;
-    }
-    tr:last-child td { border-bottom: none; }
-    tbody tr:nth-child(even) { background: #f3f8f4; }
-
-    .callout {
-      background: #fff8e8;
-      border: 1px solid #e8d5a3;
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-      margin: 1rem 0 0;
-    }
-    .callout p { margin: 0; }
-    .callout p + p { margin-top: 0.65rem; }
-    .callout strong { color: var(--accent); }
-
-    .batch-list {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 1.1rem 1.15rem;
-      box-shadow: var(--shadow);
-      margin-bottom: 1rem;
-    }
-    .batch-list ul {
-      margin: 0;
-      padding-left: 1.15rem;
-    }
-    .batch-list li { margin-bottom: 0.55rem; color: var(--muted); }
-    .batch-list li strong { color: var(--ink); }
-
-    .final {
-      background: var(--accent);
-      color: #f2f7f3;
-      border-radius: var(--radius);
-      padding: 1.25rem 1.2rem;
-      box-shadow: var(--shadow);
-    }
-    .final h3 {
-      font-family: var(--font-display);
-      margin: 0 0 0.5rem;
-      font-size: 1.25rem;
-    }
-    .final p { margin: 0; opacity: 0.95; }
-
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding: 1.5rem 0 0.5rem;
-    }
-  </style>
-</head>
-<body>
-  <nav class="site-nav" aria-label="Secciones">
-    <div class="site-nav__inner">
-      <a href="#inicio">Inicio</a>
-      <a href="#lista">Compra</a>
-      <a href="#menu">Menú</a>
-      <a href="#tomate">Tomate</a>
-      <a href="#batch">Batch</a>
-      <a href="#tips">Tips</a>
-    </div>
-  </nav>
-
-  <div class="wrap">
-    <div class="page">
-      <header class="hero" id="inicio">
-        <span class="hero__eyebrow">Batch cooking · cocina casera</span>
-        <h1>Menú semanal económico para 2 personas</h1>
-        <p class="hero__lead">
-          Presupuesto 40–50 €/semana. Cocinas el domingo y tienes comida y cena
-          para toda la semana, con más variedad y tomate donde realmente aporta sabor.
-        </p>
-        <ul class="chips">
-          <li>40–50 €/semana</li>
-          <li>14 comidas · 2 personas</li>
-          <li>Con tomate</li>
-          <li>Prep. domingo</li>
-        </ul>
-      </header>
-
-      <div class="intro-card">
-        <p>
-          Menú reajustado manteniendo el presupuesto, incorporando el tomate donde
-          aporta sabor y mejorando algunos platos para darles más variedad. Sigue
-          siendo cocina casera, equilibrada y con ingredientes que se reutilizan.
-        </p>
-        <ul>
-          <li>Tomate fresco y triturado donde suma sabor</li>
-          <li>Recetas sencillas, sin ingredientes raros</li>
-          <li>Más legumbres, verduras y huevos</li>
-          <li>Pollo + algo de cerdo y atún</li>
-          <li>Base el domingo; platos rápidos entre semana</li>
-        </ul>
-        <p class="budget-note">
-          Presupuesto objetivo: <strong>40–50 €</strong> para dos personas
-          (sin contar aceite, sal y especias de la despensa).
-        </p>
-      </div>
-
-      <!-- LISTA DE LA COMPRA -->
-      <section id="lista" aria-labelledby="lista-title">
-        <div class="shop">
-          <div class="shop__top">
-            <h2 id="lista-title">Lista de la compra</h2>
-            <div class="shop__meta">
-              <span class="progress" id="shop-progress" aria-live="polite">0/28</span>
-              <button type="button" class="btn-reset" id="shop-reset">Reiniciar lista</button>
-            </div>
-          </div>
-          <p class="shop__intro">
-            Compra para dos personas. Más tomate (fresco y triturado) para usarlo
-            en varios platos. El progreso se guarda en este dispositivo.
-          </p>
-
-          <div class="shop-group">
-            <div class="shop-group__head">
-              <h3>Carnicería y proteínas</h3>
-            </div>
-            <label class="shop-item" data-id="pollo">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Pollo variado</span>
-                <span class="shop-item__qty">1,5 kg</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="cerdo">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Cerdo adobado</span>
-                <span class="shop-item__qty">400–500 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="jamon">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Tacos de jamón</span>
-                <span class="shop-item__qty">100 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="chorizo">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Chorizo</span>
-                <span class="shop-item__qty">1 pequeño</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="atun">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Atún</span>
-                <span class="shop-item__qty">2 latas</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="huevos">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Huevos</span>
-                <span class="shop-item__qty">18 unidades</span>
-              </span>
-            </label>
-          </div>
-
-          <div class="shop-group">
-            <div class="shop-group__head">
-              <h3>Verduras y hortalizas</h3>
-            </div>
-            <label class="shop-item" data-id="tomates-frescos">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Tomates frescos</span>
-                <span class="shop-item__qty">1–1,2 kg</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="tomate-triturado">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Tomate triturado</span>
-                <span class="shop-item__qty">1 bote de 400 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="patatas">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Patatas</span>
-                <span class="shop-item__qty">2,5 kg</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="zanahorias">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Zanahorias</span>
-                <span class="shop-item__qty">1 kg</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="cebollas">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Cebollas</span>
-                <span class="shop-item__qty">1 kg</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="pimientos">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Pimientos rojo y amarillo</span>
-                <span class="shop-item__qty">2 unidades</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="calabacines">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Calabacines</span>
-                <span class="shop-item__qty">2 unidades</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="champis">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Champiñones</span>
-                <span class="shop-item__qty">250 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="espinacas">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Espinacas congeladas</span>
-                <span class="shop-item__qty">300–450 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="guisantes">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Guisantes congelados</span>
-                <span class="shop-item__qty">400 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="pepino">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Pepino</span>
-                <span class="shop-item__qty">1 unidad</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="ajo">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Ajo</span>
-                <span class="shop-item__qty">1 cabeza</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="limones">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Limones</span>
-                <span class="shop-item__qty">2 unidades</span>
-              </span>
-            </label>
-          </div>
-
-          <div class="shop-group">
-            <div class="shop-group__head">
-              <h3>Legumbres, cereales y pan</h3>
-            </div>
-            <label class="shop-item" data-id="lentejas">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Lentejas secas</span>
-                <span class="shop-item__qty">250 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="garbanzos">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Garbanzos cocidos</span>
-                <span class="shop-item__qty">2 botes</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="arroz">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Arroz</span>
-                <span class="shop-item__qty">500 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="pasta">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Pasta</span>
-                <span class="shop-item__qty">250 g</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="tortillas">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Tortillas de trigo</span>
-                <span class="shop-item__qty">1 paquete</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="pan">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Pan</span>
-                <span class="shop-item__qty">1 barra o paquete</span>
-              </span>
-            </label>
-          </div>
-
-          <div class="shop-group">
-            <div class="shop-group__head">
-              <h3>Otros</h3>
-            </div>
-            <label class="shop-item" data-id="maiz">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Maíz dulce</span>
-                <span class="shop-item__qty">1 lata</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="panko">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Panko o pan rallado</span>
-                <span class="shop-item__qty">1 paquete pequeño</span>
-              </span>
-            </label>
-            <label class="shop-item" data-id="leche">
-              <input type="checkbox" />
-              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
-              <span class="shop-item__text">
-                <span class="shop-item__name">Leche</span>
-                <span class="shop-item__qty">1 litro (opcional)</span>
-              </span>
-            </label>
-          </div>
-
-          <div class="shop__footer">
-            <p class="shop__total">Presupuesto estimado: 43–50 €</p>
-            <p class="shop__note">
-              Orientativo para supermercados económicos y marcas blancas. Depende de
-              ofertas y formatos. Aceite, sal y especias no incluidos (despensa).
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- MENÚ SEMANAL -->
-      <section id="menu" aria-labelledby="menu-title">
-        <div class="section-head">
-          <h2 id="menu-title">1. Menú semanal actualizado</h2>
-          <p>Comida y cena de lunes a domingo, con tomate donde aporta.</p>
-        </div>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Lunes</h3>
-            <span class="day__tag">Batch cooking</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/0YEEtbmWfi8FbxoCY2YeqXsuQnd2FVN6lmyv5CFXYJxyaaCqUpANQfs6FFWASHQOO4FeyMtFA7nIxd0e4NHQzx0BYX2cw16oqVCt8JxHltIUY8lFFnh_7zMGqkQVuIsjq649FsFIC30OwYRyFeb0shG7AYnPJLE8EQO0meimVBc?purpose=inline" alt="Pollo al horno con patatas y tomate" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Pollo al horno con patatas y tomate</h4>
-              <p>Muslos de pollo, patatas, zanahoria, cebolla y tomate en rodajas. Ajo y limón.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/BYoo6-BEWEgEhu9Vp65hv7gNzwuCfq738nVHWKdESNkAHK7skLbKREqWd_UAcqfWLD8Sm5xmAU4iayedggido6Skb6vY5sQ36eezfPcG6-ffCzSPPysiYG7iqj_L9TAPc2QzVnF1pZcOQUnxcZIv-UsBphy6tInIbd43lv4LBwodh8-cW_Jw_mwsSMVRRGaI?purpose=inline" alt="Guisantes con jamón y huevo" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Guisantes con jamón y huevo</h4>
-              <p>Cebolla, ajo, tacos de jamón y un poco de tomate rallado. Un huevo por persona.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Martes</h3>
-            <span class="day__tag">Batch cooking</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/WC3nfpbtNgNup8rghdLbjQHy4UC5rKwAm4nqI2Q4Sb1p48K1AHY7IQEBxpBSjfgO0DrO0DfkefGhosLCIKG9NqZOSSTa3xaYzIowciN6U6urkk4wizaPK6Er0uOsMqInQTNCh4fGVfhi5sxlAw_OGB_fKjrDy1nkVXKrQN13cK0?purpose=inline" alt="Lentejas estofadas" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Lentejas estofadas</h4>
-              <p>Con chorizo, zanahoria, patata, cebolla, ajo y tomate triturado.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/3T2K1AnHi-7fdOb6LzRyJXto3YpMaOk0ixWnYYqCT3aC-fAxBYWDMx5COyCU3AZM3rLrRDTH1-rLJ9EA7xYeaiOXWMNWXyKgpAgQuCNAAGLkU2opSUpYgorSPv-0332mgwehFR12xRLvb82YMO1Bu3Kw9CUAoTLtrCI2SCcOql8?purpose=inline" alt="Ensalada de pasta con atún" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Ensalada de pasta con atún</h4>
-              <p>Pasta, atún, maíz, tomate fresco, pepino y huevo cocido.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Miércoles</h3>
-            <span class="day__tag">Batch cooking</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/izWxPMQTMo0u0pTcD-yCpP3W8u0CELJCFvlfXcUyOS_zAPZxvR-zFRz4YPSHHY5VbDlpApcCzKsVCCShni79SwPGEgvuluiRyN694o3Q7VK_0ZXqeDe3egR-b0PlFnZdGoChOZJRmPWDOAXVvU_KyKdDF23Rlf04ScfeajB-qqw?purpose=inline" alt="Garbanzos con espinacas y tomate" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Garbanzos con espinacas y tomate</h4>
-              <p>Sofrito de cebolla, ajo, tomate y pimentón.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/UT1J6B5uBG2zdVV_w7MUlHgQEeFKPD-5XRvdP4PYwi67FPYeWlctHoMONnrIhzdMzuqTy2TE7QhwfPIo1mVO_gEmtbpsWGK0Y3mBVfDpk-Aid_ykQAozSUFTj_lwFitvMCSLH3uL91jzHXYzP7-hrcZx5UA1NyuMdPwPSn_IsnU?purpose=inline" alt="Fajitas de pollo" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Fajitas de pollo</h4>
-              <p>Pollo, pimientos, cebolla y tomate. Comino, pimentón y tortillas.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Jueves</h3>
-            <span class="day__tag">Batch cooking</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/XebdZTjRiM9aLsrSs7P_lSalOu5yV2CBNn69a1UXqj3G3nNHfym9yDM5Gw03VJSrfM6CHIS1ubtFw6q2cfL0JgFYeSNH7TdLfjlF4dWBW1-KcfR7EjrO6WLjMFGq_N4p-pdVk7qKNOUvvlbrJQLKaPHO7k3KeWr5Fw4Dd-YMM4U?purpose=inline" alt="Tortilla de patatas con ensalada" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Tortilla de patatas con ensalada</h4>
-              <p>Tomate fresco, pepino y aceite de oliva como acompañamiento.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/LFwAle1wcIr9isITrPAe6QESiq9PNi-ICoOFg-RjHKLnbP4Uggu9FqL8nosb2Mb-FHzLpyLAsSlKNHBkl-qcJOAs3fAjC8SOCAZZ4Il1m6y0etRpRMEhYUL30knMn5qpeIk0kpb9hQ9xRWCMV3MSVNQVLQFHHVDjCerIPti0QfE?purpose=inline" alt="Arroz salteado con pollo y verduras" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Arroz salteado con pollo y verduras</h4>
-              <p>Zanahoria, guisantes, cebolla y huevo. Un poco de salsa de soja opcional.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Viernes</h3>
-            <span class="day__tag">Batch cooking</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/h7aDOA12Fv-2EE_ZyLQbgK9qOySsZdAB52y_HaUmEI7UWGQ8zmo75434kEsEa4U6QbClcChx-lQcWhVXa885t-mVG9ayDFzX-a1jw492bO_GZvx2NHGt6lf3rDvAAt4N_8JyZ_KeqFUMoPrUR7FXICGf2VFHb1cfXY-Y2HtV0Lg?purpose=inline" alt="Crema de verduras" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Crema de verduras</h4>
-              <p>Zanahoria, patata, cebolla y tomate. Acompañada de huevos cocidos y pan.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/B1Ewyxio1I1wBgphP8mjUPz6L4cbUk8_86NMMb2YKtoABdAFu4964ZpNsnM_-PBEjLIEdfGLrzYYrysQ-pmFKMV9P_rhaPVQO0yK-v81u8bI0sVrQ1qpQcHMgmtgnCLhujWZPRym_KTD5dlG0pGjHOPz1trPqOtabE4Q0Z4oq9k?purpose=inline" alt="Pollo crujiente rebozado" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Pollo crujiente rebozado</h4>
-              <p>Panko o pan rallado, con ensalada de tomate y pepino.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Sábado</h3>
-            <span class="day__tag">Descongelar</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/DZ7KKnswc5jlNqjOqCFy0a3Mznn7WNR8wFPuiorKDjK3_ZAWJhMgW_2k-O3p-S87G_kGXiFm5hA0qE5G-cGJAb0e5c9Q27u8qEYc9low5VPn5Dh7P9Hlv2EQp_4HTHW5dVlb45BRW3nJrHvgLboKBFE4Dwi4y6mYj5GVdfDu7mI?purpose=inline" alt="Cerdo adobado con patatas" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Cerdo adobado con patatas</h4>
-              <p>Con tomate aliñado y orégano.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/ER9sZqG0AU2QgSsGlvdDXdJZsdEOh7-gJy1OI__OHCRmBaUA1Gxckhcj0GFO0Y5-edC5YXmiWPRTG7wQnfoUEkHCo3l3r4Z6DZjF22yo25P8pA3__-JwloZL4YbulScDbUV79WEcWuNAv1_-LoHPBk3iCG7PyABILmL26kLA01c?purpose=inline" alt="Revuelto de calabacín y champiñones" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Revuelto de calabacín y champiñones</h4>
-              <p>Con cebolla y tomate salteado.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="day">
-          <div class="day__header">
-            <h3>Domingo</h3>
-            <span class="day__tag">Descongelar</span>
-          </div>
-          <div class="meals">
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/r-e8dsXjOCfAnsLU-XgruN2HFuMNIWmpgkWiHYOy6ERe9jNKuo6ywLIOlK3pRHHQGLfh-GkLDO4U0q-ZxhmiNjBON-2hQM1jSCgyk0IN4uTofSmqkchH7uY_ZO2jkHSNhPq5C1O6E5DvgQiuer9EkANDAkMd_mixcnCQjr9jvIs9g0lK0rVr7pcOBbCDHWLP?purpose=inline" alt="Arroz con pollo" loading="lazy" />
-              </div>
-              <p class="meal__label">Comida</p>
-              <h4>Arroz con pollo</h4>
-              <p>Sofrito de tomate, cebolla y ajo, con pollo y verduras.</p>
-            </div>
-            <div class="meal">
-              <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/s6rH6jrDikGUD1V_otJ2p_t_i__DLNzNz87aFvB8B_q9mSOgCRf0iJ_gsnuwwgio0ZTbA2h9RkGzPzZfwGFfdLTyh6OhEzunhzmaacddbEWVUkE-RwQyi0pgEfv2jlhEHz8AXNfsS3KUcZkDCXopYxBD7LQXXfEFs-MvxZ2xI74?purpose=inline" alt="Sopa de garbanzos y verduras" loading="lazy" />
-              </div>
-              <p class="meal__label">Cena</p>
-              <h4>Sopa de garbanzos y verduras</h4>
-              <p>Caldo con zanahoria, patata, garbanzos y tomate.</p>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <!-- REPARTO DE TOMATE -->
-      <section id="tomate" aria-labelledby="tomate-title">
-        <div class="section-head">
-          <h2 id="tomate-title">3. Cómo repartir el tomate</h2>
-          <p>Para no comprar de más ni que se estropee.</p>
-        </div>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Uso</th><th>Cantidad aproximada</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Pollo al horno</td><td>2 tomates</td></tr>
-              <tr><td>Guisantes con jamón</td><td>1 tomate</td></tr>
-              <tr><td>Lentejas</td><td>100 g triturado</td></tr>
-              <tr><td>Pasta con atún</td><td>2 tomates</td></tr>
-              <tr><td>Garbanzos con espinacas</td><td>150 g triturado</td></tr>
-              <tr><td>Fajitas</td><td>1 tomate</td></tr>
-              <tr><td>Ensalada con tortilla</td><td>2 tomates</td></tr>
-              <tr><td>Crema de verduras</td><td>100 g triturado</td></tr>
-              <tr><td>Cerdo adobado</td><td>2 tomates</td></tr>
-              <tr><td>Revuelto</td><td>1 tomate</td></tr>
-              <tr><td>Arroz con pollo</td><td>150 g triturado</td></tr>
-              <tr><td>Sopa de garbanzos</td><td>100 g triturado</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- BATCH COOKING -->
-      <section id="batch" aria-labelledby="batch-title">
-        <div class="section-head">
-          <h2 id="batch-title">4. Ajuste al batch cooking</h2>
-          <p>No hace falta preparar absolutamente todo el domingo.</p>
-        </div>
-
-        <div class="batch-list">
-          <ul>
-            <li>
-              <strong>Domingo:</strong> lentejas, garbanzos, pollo al horno, guisantes,
-              fajitas, crema y verduras asadas.
-            </li>
-            <li>
-              <strong>Congelar:</strong> las raciones del viernes al domingo, una vez
-              enfriadas correctamente.
-            </li>
-            <li>
-              <strong>Entre semana:</strong> pasta, arroz, huevos, tortilla y revueltos
-              cuando toque. Son rápidos y mejoran mucho recién hechos.
-            </li>
-          </ul>
-        </div>
-
-        <div class="callout">
-          <p>
-            <strong>Arroz cocido:</strong> conviene enfriarlo rápidamente y consumirlo
-            en 24 horas si se guarda refrigerado.
-          </p>
-        </div>
-      </section>
-
-      <!-- TIPS -->
-      <section id="tips" aria-labelledby="tips-title">
-        <div class="section-head">
-          <h2 id="tips-title">Siguientes semanas</h2>
-          <p>Misma estructura, recetas rotativas.</p>
-        </div>
-
-        <div class="final">
-          <h3>Propuesta</h3>
-          <p>
-            Mantener una estructura similar y rotar las recetas. Por ejemplo: una semana
-            albóndigas en salsa de tomate, otra macarrones con carne picada, otra patatas
-            guisadas con carne y otra arroz con verduras y atún. Así montas un recetario
-            rotativo de unas 50 recetas sin disparar el presupuesto.
-          </p>
-        </div>
-      </section>
-    </div>
-
-    <footer>Menú semanal · lista con localStorage · listo para el móvil</footer>
-  </div>
-
-  <script>
-    (function () {
-      var STORAGE_KEY = "menu-semanal-compra-v2";
-      var items = Array.prototype.slice.call(document.querySelectorAll(".shop-item"));
-      var progressEl = document.getElementById("shop-progress");
-      var resetBtn = document.getElementById("shop-reset");
-
-      function load() {
-        try {
-          return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
-        } catch (e) {
-          return {};
+      /* Móvil: lista arriba; desktop: al final */
+      #lista {
+        order: -1;
+      }
+      @media (min-width: 900px) {
+        #lista {
+          order: 0;
         }
       }
 
-      function save(state) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      .hero {
+        padding: 1.25rem 0 0.25rem;
+      }
+      .hero__eyebrow {
+        display: inline-block;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent-soft);
+        margin-bottom: 0.5rem;
+      }
+      .hero h1 {
+        font-family: var(--font-display);
+        font-size: clamp(1.85rem, 5vw, 2.75rem);
+        font-weight: 700;
+        line-height: 1.15;
+        margin: 0 0 0.75rem;
+        color: var(--accent);
+      }
+      .hero__lead {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 40rem;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.45rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .chips li {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--accent);
       }
 
-      function updateProgress() {
-        var done = items.filter(function (el) {
-          return el.classList.contains("is-checked");
-        }).length;
-        progressEl.textContent = done + "/" + items.length;
+      .intro-card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 1.1rem 1.15rem;
+        box-shadow: var(--shadow);
+      }
+      .intro-card p {
+        margin: 0 0 0.85rem;
+      }
+      .intro-card ul {
+        margin: 0;
+        padding-left: 1.15rem;
+        color: var(--muted);
+      }
+      .intro-card li {
+        margin-bottom: 0.35rem;
+      }
+      .budget-note {
+        margin-top: 1rem;
+        padding: 0.75rem 0.9rem;
+        background: #e8f0e5;
+        border-left: 3px solid var(--highlight);
+        border-radius: 0 8px 8px 0;
+        font-weight: 500;
       }
 
-      function applyState(state) {
+      section {
+        scroll-margin-top: calc(var(--nav-h) + 0.75rem);
+      }
+
+      .section-head {
+        margin: 0.5rem 0 1rem;
+      }
+      .section-head h2 {
+        font-family: var(--font-display);
+        font-size: clamp(1.45rem, 3.5vw, 1.9rem);
+        margin: 0 0 0.35rem;
+        color: var(--accent);
+      }
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .day {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        margin-bottom: 1rem;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .day__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.35rem 1rem;
+        padding: 0.85rem 1rem;
+        background: linear-gradient(90deg, #2f4a3a, #3f634f);
+        color: #f4f8f5;
+      }
+      .day__header h3 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+      }
+      .day__tag {
+        font-size: 0.8rem;
+        opacity: 0.9;
+        font-weight: 500;
+      }
+      .meals {
+        display: grid;
+        gap: 0;
+      }
+      @media (min-width: 700px) {
+        .meals {
+          grid-template-columns: 1fr 1fr;
+        }
+        .meal + .meal {
+          border-left: 1px solid var(--line);
+        }
+      }
+      .meal {
+        padding: 1rem;
+      }
+      .meal + .meal {
+        border-top: 1px solid var(--line);
+      }
+      @media (min-width: 700px) {
+        .meal + .meal {
+          border-top: none;
+        }
+      }
+      .meal__label {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--highlight);
+        margin: 0 0 0.35rem;
+      }
+      .meal h4 {
+        margin: 0 0 0.5rem;
+        font-size: 1.05rem;
+        font-weight: 650;
+      }
+      .meal h4 a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .meal h4 a:hover {
+        color: var(--accent-soft);
+        text-decoration: underline;
+      }
+      .meal__link {
+        display: inline-block;
+        margin-top: 0.55rem;
+        font-size: 0.88rem;
+        font-weight: 650;
+        color: var(--accent-soft);
+        text-decoration: none;
+      }
+      .meal__link:hover {
+        text-decoration: underline;
+      }
+      .meal p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      .meal__img {
+        margin: 0 0 0.75rem;
+        border-radius: 8px;
+        overflow: hidden;
+        aspect-ratio: 16 / 10;
+        background: var(--bg-deep);
+      }
+      .meal__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .shop {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .shop__top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 1rem 1.1rem;
+        background: linear-gradient(135deg, #2f4a3a 0%, #456a54 100%);
+        color: #f4f8f5;
+      }
+      .shop__top h2 {
+        font-family: var(--font-display);
+        margin: 0;
+        font-size: 1.4rem;
+      }
+      .shop__meta {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        flex-wrap: wrap;
+      }
+      .progress {
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.9rem;
+      }
+      .btn-reset {
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: transparent;
+        color: #fff;
+        padding: 0.4rem 0.8rem;
+        border-radius: 999px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      .btn-reset:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .shop__intro {
+        padding: 0.9rem 1.1rem 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .shop-group {
+        padding: 0.85rem 1.1rem 0.25rem;
+      }
+      .shop-group__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 0.5rem;
+        margin-bottom: 0.55rem;
+        padding-bottom: 0.35rem;
+        border-bottom: 1px solid var(--line);
+      }
+      .shop-group__head h3 {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--accent);
+      }
+      .shop-group__price {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .shop-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 0.55rem 0.25rem;
+        border-radius: 8px;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        transition: background 0.12s ease;
+      }
+      .shop-item:hover {
+        background: #eef4ef;
+      }
+      .shop-item input {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .check {
+        flex: 0 0 auto;
+        width: 1.35rem;
+        height: 1.35rem;
+        margin-top: 0.1rem;
+        border: 2px solid var(--accent);
+        border-radius: 6px;
+        display: grid;
+        place-items: center;
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .check svg {
+        width: 0.85rem;
+        height: 0.85rem;
+        opacity: 0;
+        stroke: #fff;
+        stroke-width: 3;
+        fill: none;
+      }
+      .shop-item.is-checked .check {
+        background: var(--ok);
+        border-color: var(--ok);
+      }
+      .shop-item.is-checked .check svg {
+        opacity: 1;
+      }
+      .shop-item.is-checked .shop-item__text {
+        text-decoration: line-through;
+        color: var(--muted);
+        opacity: 0.75;
+      }
+      .shop-item__text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+        min-width: 0;
+      }
+      .shop-item__name {
+        font-weight: 600;
+      }
+      .shop-item__qty {
+        font-size: 0.88rem;
+        color: var(--muted);
+      }
+
+      .shop__footer {
+        padding: 1rem 1.1rem 1.25rem;
+        border-top: 1px solid var(--line);
+        margin-top: 0.5rem;
+      }
+      .shop__total {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        margin: 0 0 0.5rem;
+        color: var(--accent);
+      }
+      .shop__note {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        margin-bottom: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.92rem;
+        min-width: 280px;
+      }
+      th,
+      td {
+        text-align: left;
+        padding: 0.7rem 0.9rem;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      th {
+        background: #e5efe7;
+        font-weight: 650;
+        color: var(--accent);
+        white-space: nowrap;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tbody tr:nth-child(even) {
+        background: #f3f8f4;
+      }
+
+      .callout {
+        background: #fff8e8;
+        border: 1px solid #e8d5a3;
+        border-radius: var(--radius);
+        padding: 1rem 1.1rem;
+        margin: 1rem 0 0;
+      }
+      .callout p {
+        margin: 0;
+      }
+      .callout p + p {
+        margin-top: 0.65rem;
+      }
+      .callout strong {
+        color: var(--accent);
+      }
+
+      .batch-list {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 1.1rem 1.15rem;
+        box-shadow: var(--shadow);
+        margin-bottom: 1rem;
+      }
+      .batch-list ul {
+        margin: 0;
+        padding-left: 1.15rem;
+      }
+      .batch-list li {
+        margin-bottom: 0.55rem;
+        color: var(--muted);
+      }
+      .batch-list li strong {
+        color: var(--ink);
+      }
+
+      .final {
+        background: var(--accent);
+        color: #f2f7f3;
+        border-radius: var(--radius);
+        padding: 1.25rem 1.2rem;
+        box-shadow: var(--shadow);
+      }
+      .final h3 {
+        font-family: var(--font-display);
+        margin: 0 0 0.5rem;
+        font-size: 1.25rem;
+      }
+      .final p {
+        margin: 0;
+        opacity: 0.95;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.85rem;
+        padding: 1.5rem 0 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Secciones">
+      <div class="site-nav__inner">
+        <a href="#inicio">Inicio</a>
+        <a href="#lista">Compra</a>
+        <a href="#menu">Menú</a>
+        <a href="#tomate">Tomate</a>
+        <a href="#batch">Batch</a>
+        <a href="#tips">Tips</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+      <div class="page">
+        <header class="hero" id="inicio">
+          <span class="hero__eyebrow">Batch cooking · cocina casera</span>
+          <h1>Menú semanal económico para 2 personas</h1>
+          <p class="hero__lead">
+            Presupuesto 40–50 €/semana. Cocinas el domingo y tienes comida y
+            cena para toda la semana, con más variedad.
+          </p>
+          <ul class="chips">
+            <li>40–50 €/semana</li>
+            <li>14 comidas · 2 personas</li>
+            <li>Con tomate</li>
+            <li>Prep. domingo</li>
+          </ul>
+        </header>
+
+        <div class="intro-card">
+          <p>
+            Menú reajustado manteniendo el presupuesto. Cocina casera,
+            equilibrada y con ingredientes que se reutilizan.
+          </p>
+          <ul>
+            <li>Recetas sencillas, sin ingredientes raros</li>
+            <li>Más legumbres, verduras y huevos</li>
+            <li>Pollo + algo de cerdo y atún</li>
+            <li>Base el domingo; platos rápidos entre semana</li>
+          </ul>
+          <p class="budget-note">
+            Presupuesto objetivo: <strong>40–50 €</strong> para dos personas
+            (sin contar aceite, sal y especias de la despensa).
+          </p>
+        </div>
+
+        <!-- LISTA DE LA COMPRA -->
+        <section id="lista" aria-labelledby="lista-title">
+          <div class="shop">
+            <div class="shop__top">
+              <h2 id="lista-title">Lista de la compra</h2>
+              <div class="shop__meta">
+                <span class="progress" id="shop-progress" aria-live="polite"
+                  >0/28</span
+                >
+                <button type="button" class="btn-reset" id="shop-reset">
+                  Reiniciar lista
+                </button>
+              </div>
+            </div>
+            <p class="shop__intro">
+              Compra para dos personas. Más tomate (fresco y triturado) para
+              usarlo en varios platos. El progreso se guarda en este
+              dispositivo.
+            </p>
+
+            <div class="shop-group">
+              <div class="shop-group__head">
+                <h3>Carnicería y proteínas</h3>
+              </div>
+              <label class="shop-item" data-id="pollo">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true">
+                  <svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Pollo variado</span>
+                  <span class="shop-item__qty">1,5 kg</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="cerdo">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Cerdo adobado</span>
+                  <span class="shop-item__qty">400–500 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="jamon">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Tacos de jamón</span>
+                  <span class="shop-item__qty">100 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="chorizo">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Chorizo</span>
+                  <span class="shop-item__qty">1 pequeño</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="atun">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Atún</span>
+                  <span class="shop-item__qty">2 latas</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="huevos">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Huevos</span>
+                  <span class="shop-item__qty">18 unidades</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="shop-group">
+              <div class="shop-group__head">
+                <h3>Verduras y hortalizas</h3>
+              </div>
+              <label class="shop-item" data-id="tomates-frescos">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Tomates frescos</span>
+                  <span class="shop-item__qty">1–1,2 kg</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="tomate-triturado">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Tomate triturado</span>
+                  <span class="shop-item__qty">1 bote de 400 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="patatas">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Patatas</span>
+                  <span class="shop-item__qty">2,5 kg</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="zanahorias">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Zanahorias</span>
+                  <span class="shop-item__qty">1 kg</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="cebollas">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Cebollas</span>
+                  <span class="shop-item__qty">1 kg</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="pimientos">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Pimientos rojo y amarillo</span>
+                  <span class="shop-item__qty">2 unidades</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="calabacines">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Calabacines</span>
+                  <span class="shop-item__qty">2 unidades</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="champis">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Champiñones</span>
+                  <span class="shop-item__qty">250 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="espinacas">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Espinacas congeladas</span>
+                  <span class="shop-item__qty">300–450 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="guisantes">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Guisantes congelados</span>
+                  <span class="shop-item__qty">400 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="pepino">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Pepino</span>
+                  <span class="shop-item__qty">1 unidad</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="ajo">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Ajo</span>
+                  <span class="shop-item__qty">1 cabeza</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="limones">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Limones</span>
+                  <span class="shop-item__qty">2 unidades</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="shop-group">
+              <div class="shop-group__head">
+                <h3>Legumbres, cereales y pan</h3>
+              </div>
+              <label class="shop-item" data-id="lentejas">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Lentejas secas</span>
+                  <span class="shop-item__qty">250 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="garbanzos">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Garbanzos cocidos</span>
+                  <span class="shop-item__qty">2 botes</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="arroz">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Arroz</span>
+                  <span class="shop-item__qty">500 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="pasta">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Pasta</span>
+                  <span class="shop-item__qty">250 g</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="tortillas">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Tortillas de trigo</span>
+                  <span class="shop-item__qty">1 paquete</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="pan">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Pan</span>
+                  <span class="shop-item__qty">1 barra o paquete</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="shop-group">
+              <div class="shop-group__head">
+                <h3>Otros</h3>
+              </div>
+              <label class="shop-item" data-id="maiz">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Maíz dulce</span>
+                  <span class="shop-item__qty">1 lata</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="panko">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Panko o pan rallado</span>
+                  <span class="shop-item__qty">1 paquete pequeño</span>
+                </span>
+              </label>
+              <label class="shop-item" data-id="leche">
+                <input type="checkbox" />
+                <span class="check" aria-hidden="true"
+                  ><svg viewBox="0 0 16 16">
+                    <polyline points="2.5 8.5 6.5 12.5 13.5 3.5" /></svg
+                ></span>
+                <span class="shop-item__text">
+                  <span class="shop-item__name">Leche</span>
+                  <span class="shop-item__qty">1 litro (opcional)</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="shop__footer">
+              <p class="shop__total">Presupuesto estimado: 43–50 €</p>
+              <p class="shop__note">
+                Orientativo para supermercados económicos y marcas blancas.
+                Depende de ofertas y formatos. Aceite, sal y especias no
+                incluidos (despensa).
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- MENÚ SEMANAL -->
+        <section id="menu" aria-labelledby="menu-title">
+          <div class="section-head">
+            <h2 id="menu-title">1. Menú semanal actualizado</h2>
+            <p>Comida y cena de lunes a domingo, con tomate donde aporta.</p>
+          </div>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Lunes</h3>
+              <span class="day__tag">Batch cooking</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/0YEEtbmWfi8FbxoCY2YeqXsuQnd2FVN6lmyv5CFXYJxyaaCqUpANQfs6FFWASHQOO4FeyMtFA7nIxd0e4NHQzx0BYX2cw16oqVCt8JxHltIUY8lFFnh_7zMGqkQVuIsjq649FsFIC30OwYRyFeb0shG7AYnPJLE8EQO0meimVBc?purpose=inline"
+                    alt="Pollo al horno con patatas y tomate"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4>
+                  <a href="recetas/01-pollo-al-horno.html"
+                    >Pollo al horno con patatas y tomate</a
+                  >
+                </h4>
+                <p>
+                  Muslos de pollo, patatas, zanahoria, cebolla y tomate en
+                  rodajas. Ajo y limón.
+                </p>
+                <a class="meal__link" href="recetas/01-pollo-al-horno.html"
+                  >Ver receta →</a
+                >
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/BYoo6-BEWEgEhu9Vp65hv7gNzwuCfq738nVHWKdESNkAHK7skLbKREqWd_UAcqfWLD8Sm5xmAU4iayedggido6Skb6vY5sQ36eezfPcG6-ffCzSPPysiYG7iqj_L9TAPc2QzVnF1pZcOQUnxcZIv-UsBphy6tInIbd43lv4LBwodh8-cW_Jw_mwsSMVRRGaI?purpose=inline"
+                    alt="Guisantes con jamón y huevo"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4>
+                  <a href="recetas/02-guisantes-con-jamon.html"
+                    >Guisantes con jamón y huevo</a
+                  >
+                </h4>
+                <p>
+                  Cebolla, ajo, tacos de jamón y un poco de tomate rallado. Un
+                  huevo por persona.
+                </p>
+                <a class="meal__link" href="recetas/02-guisantes-con-jamon.html"
+                  >Ver receta →</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Martes</h3>
+              <span class="day__tag">Batch cooking</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/WC3nfpbtNgNup8rghdLbjQHy4UC5rKwAm4nqI2Q4Sb1p48K1AHY7IQEBxpBSjfgO0DrO0DfkefGhosLCIKG9NqZOSSTa3xaYzIowciN6U6urkk4wizaPK6Er0uOsMqInQTNCh4fGVfhi5sxlAw_OGB_fKjrDy1nkVXKrQN13cK0?purpose=inline"
+                    alt="Lentejas estofadas"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4>
+                  <a href="recetas/03-lentejas-estofadas.html"
+                    >Lentejas estofadas</a
+                  >
+                </h4>
+                <p>
+                  Con chorizo, zanahoria, patata, cebolla, ajo y tomate
+                  triturado.
+                </p>
+                <a class="meal__link" href="recetas/03-lentejas-estofadas.html"
+                  >Ver receta →</a
+                >
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/3T2K1AnHi-7fdOb6LzRyJXto3YpMaOk0ixWnYYqCT3aC-fAxBYWDMx5COyCU3AZM3rLrRDTH1-rLJ9EA7xYeaiOXWMNWXyKgpAgQuCNAAGLkU2opSUpYgorSPv-0332mgwehFR12xRLvb82YMO1Bu3Kw9CUAoTLtrCI2SCcOql8?purpose=inline"
+                    alt="Ensalada de pasta con atún"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4>
+                  <a href="recetas/04-ensalada-pasta-atun.html"
+                    >Ensalada de pasta con atún</a
+                  >
+                </h4>
+                <p>Pasta, atún, maíz, tomate fresco, pepino y huevo cocido.</p>
+                <a class="meal__link" href="recetas/04-ensalada-pasta-atun.html"
+                  >Ver receta →</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Miércoles</h3>
+              <span class="day__tag">Batch cooking</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/izWxPMQTMo0u0pTcD-yCpP3W8u0CELJCFvlfXcUyOS_zAPZxvR-zFRz4YPSHHY5VbDlpApcCzKsVCCShni79SwPGEgvuluiRyN694o3Q7VK_0ZXqeDe3egR-b0PlFnZdGoChOZJRmPWDOAXVvU_KyKdDF23Rlf04ScfeajB-qqw?purpose=inline"
+                    alt="Garbanzos con espinacas y tomate"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4>
+                  <a href="recetas/05-garbanzos-espinacas.html"
+                    >Garbanzos con espinacas y tomate</a
+                  >
+                </h4>
+                <p>Sofrito de cebolla, ajo, tomate y pimentón.</p>
+                <a class="meal__link" href="recetas/05-garbanzos-espinacas.html"
+                  >Ver receta →</a
+                >
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/UT1J6B5uBG2zdVV_w7MUlHgQEeFKPD-5XRvdP4PYwi67FPYeWlctHoMONnrIhzdMzuqTy2TE7QhwfPIo1mVO_gEmtbpsWGK0Y3mBVfDpk-Aid_ykQAozSUFTj_lwFitvMCSLH3uL91jzHXYzP7-hrcZx5UA1NyuMdPwPSn_IsnU?purpose=inline"
+                    alt="Fajitas de pollo"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4>
+                  <a href="recetas/06-fajitas-pollo.html">Fajitas de pollo</a>
+                </h4>
+                <p>
+                  Pollo, pimientos, cebolla y tomate. Comino, pimentón y
+                  tortillas.
+                </p>
+                <a class="meal__link" href="recetas/06-fajitas-pollo.html"
+                  >Ver receta →</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Jueves</h3>
+              <span class="day__tag">Batch cooking</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/XebdZTjRiM9aLsrSs7P_lSalOu5yV2CBNn69a1UXqj3G3nNHfym9yDM5Gw03VJSrfM6CHIS1ubtFw6q2cfL0JgFYeSNH7TdLfjlF4dWBW1-KcfR7EjrO6WLjMFGq_N4p-pdVk7qKNOUvvlbrJQLKaPHO7k3KeWr5Fw4Dd-YMM4U?purpose=inline"
+                    alt="Tortilla de patatas con ensalada"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4>
+                  <a href="recetas/07-tortilla-patatas.html"
+                    >Tortilla de patatas con ensalada</a
+                  >
+                </h4>
+                <p>
+                  Tomate fresco, pepino y aceite de oliva como acompañamiento.
+                </p>
+                <a class="meal__link" href="recetas/07-tortilla-patatas.html"
+                  >Ver receta →</a
+                >
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/LFwAle1wcIr9isITrPAe6QESiq9PNi-ICoOFg-RjHKLnbP4Uggu9FqL8nosb2Mb-FHzLpyLAsSlKNHBkl-qcJOAs3fAjC8SOCAZZ4Il1m6y0etRpRMEhYUL30knMn5qpeIk0kpb9hQ9xRWCMV3MSVNQVLQFHHVDjCerIPti0QfE?purpose=inline"
+                    alt="Arroz salteado con pollo y verduras"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4>
+                  <a href="recetas/08-arroz-salteado-pollo.html"
+                    >Arroz salteado con pollo y verduras</a
+                  >
+                </h4>
+                <p>
+                  Zanahoria, guisantes, cebolla y huevo. Un poco de salsa de
+                  soja opcional.
+                </p>
+                <a
+                  class="meal__link"
+                  href="recetas/08-arroz-salteado-pollo.html"
+                  >Ver receta →</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Viernes</h3>
+              <span class="day__tag">Batch cooking</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/h7aDOA12Fv-2EE_ZyLQbgK9qOySsZdAB52y_HaUmEI7UWGQ8zmo75434kEsEa4U6QbClcChx-lQcWhVXa885t-mVG9ayDFzX-a1jw492bO_GZvx2NHGt6lf3rDvAAt4N_8JyZ_KeqFUMoPrUR7FXICGf2VFHb1cfXY-Y2HtV0Lg?purpose=inline"
+                    alt="Crema de verduras"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4><a href="recetas/09-crema-verduras.html">Crema de verduras</a></h4>
+                <p>
+                  Zanahoria, patata, cebolla y tomate. Acompañada de huevos
+                  cocidos y pan.
+                </p>
+                <a class="meal__link" href="recetas/09-crema-verduras.html">Ver receta →</a>
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/B1Ewyxio1I1wBgphP8mjUPz6L4cbUk8_86NMMb2YKtoABdAFu4964ZpNsnM_-PBEjLIEdfGLrzYYrysQ-pmFKMV9P_rhaPVQO0yK-v81u8bI0sVrQ1qpQcHMgmtgnCLhujWZPRym_KTD5dlG0pGjHOPz1trPqOtabE4Q0Z4oq9k?purpose=inline"
+                    alt="Pollo crujiente rebozado"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4><a href="recetas/10-pollo-crujiente.html">Pollo crujiente rebozado</a></h4>
+                <p>Panko o pan rallado, con ensalada de tomate y pepino.</p>
+                <a class="meal__link" href="recetas/10-pollo-crujiente.html">Ver receta →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Sábado</h3>
+              <span class="day__tag">Descongelar</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/DZ7KKnswc5jlNqjOqCFy0a3Mznn7WNR8wFPuiorKDjK3_ZAWJhMgW_2k-O3p-S87G_kGXiFm5hA0qE5G-cGJAb0e5c9Q27u8qEYc9low5VPn5Dh7P9Hlv2EQp_4HTHW5dVlb45BRW3nJrHvgLboKBFE4Dwi4y6mYj5GVdfDu7mI?purpose=inline"
+                    alt="Cerdo adobado con patatas"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4><a href="recetas/11-cerdo-adobado.html">Cerdo adobado con patatas</a></h4>
+                <p>Con tomate aliñado y orégano.</p>
+                <a class="meal__link" href="recetas/11-cerdo-adobado.html">Ver receta →</a>
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/ER9sZqG0AU2QgSsGlvdDXdJZsdEOh7-gJy1OI__OHCRmBaUA1Gxckhcj0GFO0Y5-edC5YXmiWPRTG7wQnfoUEkHCo3l3r4Z6DZjF22yo25P8pA3__-JwloZL4YbulScDbUV79WEcWuNAv1_-LoHPBk3iCG7PyABILmL26kLA01c?purpose=inline"
+                    alt="Revuelto de calabacín y champiñones"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4><a href="recetas/12-revuelto-calabacin.html">Revuelto de calabacín y champiñones</a></h4>
+                <p>Con cebolla y tomate salteado.</p>
+                <a class="meal__link" href="recetas/12-revuelto-calabacin.html">Ver receta →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="day">
+            <div class="day__header">
+              <h3>Domingo</h3>
+              <span class="day__tag">Descongelar</span>
+            </div>
+            <div class="meals">
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/r-e8dsXjOCfAnsLU-XgruN2HFuMNIWmpgkWiHYOy6ERe9jNKuo6ywLIOlK3pRHHQGLfh-GkLDO4U0q-ZxhmiNjBON-2hQM1jSCgyk0IN4uTofSmqkchH7uY_ZO2jkHSNhPq5C1O6E5DvgQiuer9EkANDAkMd_mixcnCQjr9jvIs9g0lK0rVr7pcOBbCDHWLP?purpose=inline"
+                    alt="Arroz con pollo"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Comida</p>
+                <h4><a href="recetas/13-arroz-con-pollo.html">Arroz con pollo</a></h4>
+                <p>Sofrito de tomate, cebolla y ajo, con pollo y verduras.</p>
+                <a class="meal__link" href="recetas/13-arroz-con-pollo.html">Ver receta →</a>
+              </div>
+              <div class="meal">
+                <div class="meal__img">
+                  <img
+                    src="https://images.openai.com/static-rsc-4/s6rH6jrDikGUD1V_otJ2p_t_i__DLNzNz87aFvB8B_q9mSOgCRf0iJ_gsnuwwgio0ZTbA2h9RkGzPzZfwGFfdLTyh6OhEzunhzmaacddbEWVUkE-RwQyi0pgEfv2jlhEHz8AXNfsS3KUcZkDCXopYxBD7LQXXfEFs-MvxZ2xI74?purpose=inline"
+                    alt="Sopa de garbanzos y verduras"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="meal__label">Cena</p>
+                <h4><a href="recetas/14-sopa-garbanzos.html">Sopa de garbanzos y verduras</a></h4>
+                <p>Caldo con zanahoria, patata, garbanzos y tomate.</p>
+                <a class="meal__link" href="recetas/14-sopa-garbanzos.html">Ver receta →</a>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- REPARTO DE TOMATE -->
+        <section id="tomate" aria-labelledby="tomate-title">
+          <div class="section-head">
+            <h2 id="tomate-title">3. Cómo repartir el tomate</h2>
+            <p>Para no comprar de más ni que se estropee.</p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Uso</th>
+                  <th>Cantidad aproximada</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Pollo al horno</td>
+                  <td>2 tomates</td>
+                </tr>
+                <tr>
+                  <td>Guisantes con jamón</td>
+                  <td>1 tomate</td>
+                </tr>
+                <tr>
+                  <td>Lentejas</td>
+                  <td>100 g triturado</td>
+                </tr>
+                <tr>
+                  <td>Pasta con atún</td>
+                  <td>2 tomates</td>
+                </tr>
+                <tr>
+                  <td>Garbanzos con espinacas</td>
+                  <td>150 g triturado</td>
+                </tr>
+                <tr>
+                  <td>Fajitas</td>
+                  <td>1 tomate</td>
+                </tr>
+                <tr>
+                  <td>Ensalada con tortilla</td>
+                  <td>2 tomates</td>
+                </tr>
+                <tr>
+                  <td>Crema de verduras</td>
+                  <td>100 g triturado</td>
+                </tr>
+                <tr>
+                  <td>Cerdo adobado</td>
+                  <td>2 tomates</td>
+                </tr>
+                <tr>
+                  <td>Revuelto</td>
+                  <td>1 tomate</td>
+                </tr>
+                <tr>
+                  <td>Arroz con pollo</td>
+                  <td>150 g triturado</td>
+                </tr>
+                <tr>
+                  <td>Sopa de garbanzos</td>
+                  <td>100 g triturado</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- BATCH COOKING -->
+        <section id="batch" aria-labelledby="batch-title">
+          <div class="section-head">
+            <h2 id="batch-title">4. Ajuste al batch cooking</h2>
+            <p>No hace falta preparar absolutamente todo el domingo.</p>
+          </div>
+
+          <div class="batch-list">
+            <ul>
+              <li>
+                <strong>Domingo:</strong> lentejas, garbanzos, pollo al horno,
+                guisantes, fajitas, crema y verduras asadas.
+              </li>
+              <li>
+                <strong>Congelar:</strong> las raciones del viernes al domingo,
+                una vez enfriadas correctamente.
+              </li>
+              <li>
+                <strong>Entre semana:</strong> pasta, arroz, huevos, tortilla y
+                revueltos cuando toque. Son rápidos y mejoran mucho recién
+                hechos.
+              </li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <p>
+              <strong>Arroz cocido:</strong> conviene enfriarlo rápidamente y
+              consumirlo en 24 horas si se guarda refrigerado.
+            </p>
+          </div>
+        </section>
+
+        <!-- TIPS -->
+        <section id="tips" aria-labelledby="tips-title">
+          <div class="section-head">
+            <h2 id="tips-title">Siguientes semanas</h2>
+            <p>Misma estructura, recetas rotativas.</p>
+          </div>
+
+          <div class="final">
+            <h3>Propuesta</h3>
+            <p>
+              Mantener una estructura similar y rotar las recetas. Por ejemplo:
+              una semana albóndigas en salsa de tomate, otra macarrones con
+              carne picada, otra patatas guisadas con carne y otra arroz con
+              verduras y atún. Así montas un recetario rotativo de unas 50
+              recetas sin disparar el presupuesto.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        Menú semanal · lista con localStorage · listo para el móvil
+      </footer>
+    </div>
+
+    <script>
+      ;(function () {
+        var STORAGE_KEY = 'menu-semanal-compra-v2'
+        var items = Array.prototype.slice.call(
+          document.querySelectorAll('.shop-item'),
+        )
+        var progressEl = document.getElementById('shop-progress')
+        var resetBtn = document.getElementById('shop-reset')
+
+        function load() {
+          try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}')
+          } catch (e) {
+            return {}
+          }
+        }
+
+        function save(state) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+        }
+
+        function updateProgress() {
+          var done = items.filter(function (el) {
+            return el.classList.contains('is-checked')
+          }).length
+          progressEl.textContent = done + '/' + items.length
+        }
+
+        function applyState(state) {
+          items.forEach(function (el) {
+            var id = el.getAttribute('data-id')
+            var checked = !!state[id]
+            var input = el.querySelector('input')
+            input.checked = checked
+            el.classList.toggle('is-checked', checked)
+          })
+          updateProgress()
+        }
+
+        function currentState() {
+          var state = {}
+          items.forEach(function (el) {
+            state[el.getAttribute('data-id')] =
+              el.classList.contains('is-checked')
+          })
+          return state
+        }
+
         items.forEach(function (el) {
-          var id = el.getAttribute("data-id");
-          var checked = !!state[id];
-          var input = el.querySelector("input");
-          input.checked = checked;
-          el.classList.toggle("is-checked", checked);
-        });
-        updateProgress();
-      }
+          el.addEventListener('click', function (e) {
+            e.preventDefault()
+            el.classList.toggle('is-checked')
+            var input = el.querySelector('input')
+            input.checked = el.classList.contains('is-checked')
+            save(currentState())
+            updateProgress()
+          })
+        })
 
-      function currentState() {
-        var state = {};
-        items.forEach(function (el) {
-          state[el.getAttribute("data-id")] = el.classList.contains("is-checked");
-        });
-        return state;
-      }
+        resetBtn.addEventListener('click', function () {
+          if (!confirm('¿Reiniciar toda la lista de la compra?')) return
+          localStorage.removeItem(STORAGE_KEY)
+          applyState({})
+        })
 
-      items.forEach(function (el) {
-        el.addEventListener("click", function (e) {
-          e.preventDefault();
-          el.classList.toggle("is-checked");
-          var input = el.querySelector("input");
-          input.checked = el.classList.contains("is-checked");
-          save(currentState());
-          updateProgress();
-        });
-      });
-
-      resetBtn.addEventListener("click", function () {
-        if (!confirm("¿Reiniciar toda la lista de la compra?")) return;
-        localStorage.removeItem(STORAGE_KEY);
-        applyState({});
-      });
-
-      applyState(load());
-    })();
-  </script>
-</body>
+        applyState(load())
+      })()
+    </script>
+  </body>
 </html>

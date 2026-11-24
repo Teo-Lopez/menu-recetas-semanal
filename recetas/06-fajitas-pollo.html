@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2f4a3a" />
+  <title>Fajitas de pollo · Recetario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef3ee;
+      --bg-deep: #e2ebe3;
+      --surface: #f7faf7;
+      --ink: #1c2a22;
+      --muted: #5a6b60;
+      --line: #c5d4c8;
+      --accent: #2f4a3a;
+      --accent-soft: #3f634f;
+      --highlight: #c4a35a;
+      --nav-h: 3.25rem;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(28, 42, 34, 0.08);
+      --max: 760px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Outfit", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 0.75rem); }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #d8e8d9 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #e8e0c8 0%, transparent 45%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+      line-height: 1.55;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: var(--accent-soft); }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(47, 74, 58, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+    }
+    .site-nav__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav__inner::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      flex: 0 0 auto;
+      color: #f2f7f3;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.14);
+      outline: none;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3.5rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+    }
+    .back:hover { text-decoration: underline; }
+
+    .hero-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--bg-deep);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      margin-bottom: 1.15rem;
+    }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--highlight);
+      margin-bottom: 0.4rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 5vw, 2.35rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+    }
+    .lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      list-style: none;
+    }
+    .meta li {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 0.75rem);
+      margin-bottom: 1.75rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      min-width: 260px;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.9rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #e5efe7;
+      font-weight: 650;
+      color: var(--accent);
+    }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: #f3f8f4; }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow);
+    }
+    .step h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    .step ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+    .step li { margin-bottom: 0.35rem; }
+    .step p {
+      margin: 0 0 0.5rem;
+      color: var(--muted);
+    }
+    .step p:last-child { margin-bottom: 0; }
+
+    .store {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 640px) {
+      .store { grid-template-columns: 1fr 1fr; }
+    }
+    .store-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .store-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    .store-card__body {
+      padding: 0.9rem 1rem 1.05rem;
+    }
+    .store-card__body h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .store-card__body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .tips {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      box-shadow: var(--shadow);
+    }
+    .tips ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+    .tips li { margin-bottom: 0.4rem; }
+
+    .nav-recipes {
+      display: grid;
+      gap: 0.65rem;
+    }
+    @media (min-width: 520px) {
+      .nav-recipes { grid-template-columns: 1fr 1fr; }
+    }
+    .nav-recipes a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .nav-recipes .prev {
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--line);
+    }
+    .nav-recipes .next {
+      background: var(--accent);
+      color: #f2f7f3;
+    }
+    .nav-recipes .next:hover { background: var(--accent-soft); color: #fff; }
+    .nav-recipes .prev:hover { background: #e8f0e8; }
+    .nav-recipes span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 0.15rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 1.5rem 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Secciones">
+    <div class="site-nav__inner">
+      <a href="../index.html">Menú</a>
+      <a href="#ingredientes">Ingredientes</a>
+      <a href="#preparacion">Preparación</a>
+      <a href="#conservacion">Conservar</a>
+      <a href="#tips">Tips</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <a class="back" href="../index.html#menu">← Volver al menú semanal</a>
+
+    <div class="hero-img">
+      <img
+        src="https://images.openai.com/static-rsc-4/aZbZWd_4bLtZfD2Cxro80PddsUyoWE6yWSgmX8W5RudebPQLjDntFcSADiYkqyrdZFhnAiU_n1O3oYUNH_9yYtuz3s1HxvwlhTh3Ij2TMwa42aYx6qM5ySazXWSKsmMO4imQ6BnWgoYOmS6RItWuP1CaYaX4n82T8kdSzN4mrLo?purpose=inline"
+        alt="Fajitas de pollo"
+      />
+    </div>
+
+    <p class="eyebrow">Receta 6 · Miércoles · Cena</p>
+    <h1>Fajitas de pollo</h1>
+    <p class="lead">
+      Rápida y versátil. Preparamos el relleno de pollo y verduras para
+      acompañarlo con tortillas de trigo.
+    </p>
+
+    <ul class="meta">
+      <li>Preparación anticipada</li>
+      <li>2 personas</li>
+      <li>10 min prep.</li>
+      <li>15 min cocción</li>
+    </ul>
+
+    <section id="ingredientes">
+      <h2>Ingredientes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Pechuga de pollo</td><td>300 g</td></tr>
+            <tr><td>Tortillas de trigo</td><td>4 unidades</td></tr>
+            <tr><td>Pimiento rojo</td><td>½ unidad</td></tr>
+            <tr><td>Pimiento verde</td><td>½ unidad</td></tr>
+            <tr><td>Cebolla</td><td>½ unidad</td></tr>
+            <tr><td>Tomate</td><td>1 unidad</td></tr>
+            <tr><td>Ajo</td><td>1 diente</td></tr>
+            <tr><td>Aceite de oliva</td><td>1 cucharada</td></tr>
+            <tr><td>Pimentón dulce</td><td>1 cucharadita</td></tr>
+            <tr><td>Comino</td><td>½ cucharadita</td></tr>
+            <tr><td>Pimienta negra</td><td>Al gusto</td></tr>
+            <tr><td>Sal</td><td>Al gusto</td></tr>
+            <tr><td>Limón</td><td>½ unidad</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="preparacion">
+      <h2>Preparación</h2>
+
+      <article class="step">
+        <h3>1. Preparar los ingredientes</h3>
+        <ul>
+          <li>Corta el pollo en tiras finas.</li>
+          <li>Corta los pimientos en tiras.</li>
+          <li>Corta la cebolla en juliana.</li>
+          <li>Pica el ajo.</li>
+          <li>Corta el tomate en dados pequeños.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>2. Aliñar el pollo</h3>
+        <p>En un bol mezcla:</p>
+        <ul>
+          <li>El pollo.</li>
+          <li>El pimentón.</li>
+          <li>El comino.</li>
+          <li>Una pizca de pimienta.</li>
+          <li>Una pizca de sal.</li>
+          <li>El zumo de medio limón.</li>
+        </ul>
+        <p style="margin-top:0.55rem;">Remueve bien y deja reposar unos 10 minutos mientras preparas las verduras.</p>
+      </article>
+
+      <article class="step">
+        <h3>3. Cocinar las verduras</h3>
+        <ul>
+          <li>Calienta el aceite en una sartén amplia.</li>
+          <li>Añade la cebolla y los pimientos.</li>
+          <li>Cocina a fuego medio-alto durante 5–6 minutos.</li>
+          <li>Añade el ajo y cocina un minuto más.</li>
+          <li>Incorpora el tomate y cocina otros 2 minutos.</li>
+          <li>Retira las verduras y resérvalas.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>4. Cocinar el pollo</h3>
+        <ul>
+          <li>En la misma sartén, añade el pollo.</li>
+          <li>Cocina a fuego medio-alto durante 5–7 minutos, removiendo para que se dore por todos los lados.</li>
+          <li>Comprueba que esté completamente cocinado por dentro.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>5. Mezclar</h3>
+        <ul>
+          <li>Devuelve las verduras a la sartén.</li>
+          <li>Mezcla con el pollo.</li>
+          <li>Cocina todo junto durante 2 minutos.</li>
+          <li>Prueba y ajusta las especias si es necesario.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>6. Calentar las tortillas</h3>
+        <p>Puedes hacerlo de dos maneras:</p>
+        <ul>
+          <li><strong>Sartén:</strong> 20–30 segundos por cada lado.</li>
+          <li><strong>Microondas:</strong> envueltas en papel de cocina ligeramente húmedo durante 20–30 segundos.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>7. Montar las fajitas</h3>
+        <p>
+          Reparte el relleno entre las cuatro tortillas. Puedes doblarlas por
+          los extremos y enrollarlas para evitar que se salga el relleno.
+        </p>
+      </article>
+    </section>
+
+    <section id="conservacion">
+      <h2>Conservación para batch cooking</h2>
+      <div class="store">
+        <article class="store-card">
+          <img
+            src="https://images.openai.com/static-rsc-4/SJgjkVMmLEHEKyHqjpS8_HuWJ24nZgSwAPM1oCba05ObAR5GD0bCVpvPQO0imrr6_zf9tz1gApt9s2uuKyMY9PC377ce3KCT436G5Su4zzloP6ft118zY-gPIzWRWEbp6m8KVCRHX8NbZ7I4aVZcUFCdUKnkhGBE7tMqoofGWw4?purpose=inline"
+            alt="Relleno de fajitas para meal prep"
+            loading="lazy"
+          />
+          <div class="store-card__body">
+            <h3>Nevera</h3>
+            <p>
+              Conserva el relleno en un recipiente hermético durante 3–4 días.
+              Guarda las tortillas aparte.
+            </p>
+          </div>
+        </article>
+        <article class="store-card">
+          <img
+            src="https://images.openai.com/static-rsc-4/Bk6tT9JhjOhHvpgAKeuvW9V4edJenfBjSAZyNfBEVurZSUGSNLfluiPYMedtkmjTWGIRfHiu3OS4umi4M8xGToF-oMBg0y_UrOw95dgeL3tlxa-oYSNq8ZTg_hYqMfSmWPPfYbeeFmbycqqRoFP2_XYeEkoOGdjYhOA_neVyckc?purpose=inline"
+            alt="Pollo para fajitas"
+            loading="lazy"
+          />
+          <div class="store-card__body">
+            <h3>Congelador</h3>
+            <p>
+              Puedes congelar el relleno ya cocinado durante 2–3 meses.
+              Descongela en la nevera y recalienta completamente.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h2>Consejos</h2>
+      <div class="tips">
+        <ul>
+          <li>No llenes demasiado las tortillas: es mejor hacer cuatro fajitas equilibradas.</li>
+          <li>Si tienes yogur natural, puedes añadir una cucharada como salsa.</li>
+          <li>Para un toque más intenso, añade unas gotas de limón justo antes de servir.</li>
+          <li>Si quieres que el pollo quede más jugoso, evita cocinarlo demasiado tiempo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="nav-recipes">
+      <a class="prev" href="05-garbanzos-espinacas.html">
+        ← Anterior
+        <span>Garbanzos con espinacas</span>
+      </a>
+      <a class="next" href="07-tortilla-patatas.html">
+        Siguiente →
+        <span>Tortilla de patatas</span>
+      </a>
+    </div>
+
+    <footer>Receta 6 de 14 · Menú semanal económico</footer>
+  </div>
+</body>
+</html>

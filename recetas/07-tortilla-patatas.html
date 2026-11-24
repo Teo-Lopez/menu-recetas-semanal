@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2f4a3a" />
+  <title>Tortilla de patatas con ensalada · Recetario</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #eef3ee;
+      --bg-deep: #e2ebe3;
+      --surface: #f7faf7;
+      --ink: #1c2a22;
+      --muted: #5a6b60;
+      --line: #c5d4c8;
+      --accent: #2f4a3a;
+      --accent-soft: #3f634f;
+      --highlight: #c4a35a;
+      --nav-h: 3.25rem;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(28, 42, 34, 0.08);
+      --max: 760px;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Outfit", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 0.75rem); }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, #d8e8d9 0%, transparent 55%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, #e8e0c8 0%, transparent 45%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      background-attachment: fixed;
+      line-height: 1.55;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img { max-width: 100%; display: block; height: auto; }
+    a { color: var(--accent-soft); }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: rgba(47, 74, 58, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+    }
+    .site-nav__inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0 0.5rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .site-nav__inner::-webkit-scrollbar { display: none; }
+    .site-nav a {
+      flex: 0 0 auto;
+      color: #f2f7f3;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .site-nav a:hover,
+    .site-nav a:focus-visible {
+      background: rgba(255, 255, 255, 0.14);
+      outline: none;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3.5rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      color: var(--accent-soft);
+      margin-bottom: 1rem;
+    }
+    .back:hover { text-decoration: underline; }
+
+    .hero-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: var(--bg-deep);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
+      margin-bottom: 1.15rem;
+    }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--highlight);
+      margin-bottom: 0.4rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.7rem, 5vw, 2.35rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 0.85rem;
+      color: var(--accent);
+    }
+    .lead {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 0 0 1.5rem;
+      padding: 0;
+      list-style: none;
+    }
+    .meta li {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    section {
+      scroll-margin-top: calc(var(--nav-h) + 0.75rem);
+      margin-bottom: 1.75rem;
+    }
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin: 0 0 0.75rem;
+      color: var(--accent);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      min-width: 260px;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.7rem 0.9rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      background: #e5efe7;
+      font-weight: 650;
+      color: var(--accent);
+    }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: #f3f8f4; }
+
+    .step {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow);
+    }
+    .step h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+    .step ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+    .step li { margin-bottom: 0.35rem; }
+    .step p {
+      margin: 0.55rem 0 0;
+      color: var(--muted);
+    }
+
+    .store {
+      display: grid;
+      gap: 0.85rem;
+    }
+    @media (min-width: 640px) {
+      .store { grid-template-columns: 1fr 1fr; }
+    }
+    .store-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .store-card img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+    .store-card__body {
+      padding: 0.9rem 1rem 1.05rem;
+    }
+    .store-card__body h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1rem;
+      color: var(--accent);
+    }
+    .store-card__body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .tips {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      box-shadow: var(--shadow);
+    }
+    .tips ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+    .tips li { margin-bottom: 0.4rem; }
+
+    .nav-recipes {
+      display: grid;
+      gap: 0.65rem;
+    }
+    @media (min-width: 520px) {
+      .nav-recipes { grid-template-columns: 1fr 1fr; }
+    }
+    .nav-recipes a {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.9rem 1.1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .nav-recipes .prev {
+      background: var(--surface);
+      color: var(--accent);
+      border: 1px solid var(--line);
+    }
+    .nav-recipes .next {
+      background: var(--accent);
+      color: #f2f7f3;
+    }
+    .nav-recipes .next:hover { background: var(--accent-soft); color: #fff; }
+    .nav-recipes .prev:hover { background: #e8f0e8; }
+    .nav-recipes span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 0.15rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 1.5rem 0 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Secciones">
+    <div class="site-nav__inner">
+      <a href="../index.html">Menú</a>
+      <a href="#ingredientes">Ingredientes</a>
+      <a href="#preparacion">Preparación</a>
+      <a href="#conservacion">Conservar</a>
+      <a href="#tips">Tips</a>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <a class="back" href="../index.html#menu">← Volver al menú semanal</a>
+
+    <div class="hero-img">
+      <img
+        src="https://images.openai.com/static-rsc-4/4lBIZFIOsKfVlkqiDcUWuZX5WQq1yawSswezsFU1UXxgXoB6xVrKEeXLSGBSqSKgYg444BkYhJ0PAcm0ZKEkH2M5GHW3VrFQ7AilmYY6SXX23leo2ZGB6ZdaYUZpR-DkIMGgFGFf5oH-g7P8jiyWSMVLmK80aqc1pywcIxii2SE?purpose=inline"
+        alt="Tortilla de patatas con ensalada"
+      />
+    </div>
+
+    <p class="eyebrow">Receta 7 · Jueves · Comida</p>
+    <h1>Tortilla de patatas con ensalada</h1>
+    <p class="lead">
+      Tortilla española clásica, jugosa por dentro, acompañada de ensalada
+      fresca para completar el plato.
+    </p>
+
+    <ul class="meta">
+      <li>Preparación anticipada</li>
+      <li>2 personas</li>
+      <li>15 min prep.</li>
+      <li>25 min cocción</li>
+    </ul>
+
+    <section id="ingredientes">
+      <h2>Ingredientes</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Ingrediente</th><th>Cantidad</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Patatas</td><td>400 g</td></tr>
+            <tr><td>Huevos</td><td>4 unidades</td></tr>
+            <tr><td>Cebolla</td><td>½ unidad</td></tr>
+            <tr><td>Aceite de oliva</td><td>150 ml aprox.</td></tr>
+            <tr><td>Sal</td><td>Al gusto</td></tr>
+            <tr><td>Tomate</td><td>1 unidad</td></tr>
+            <tr><td>Pepino</td><td>½ unidad</td></tr>
+            <tr><td>Lechuga</td><td>Unas hojas</td></tr>
+            <tr><td>Vinagre</td><td>1 cucharada</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="preparacion">
+      <h2>Preparación</h2>
+
+      <article class="step">
+        <h3>1. Preparar las patatas</h3>
+        <ul>
+          <li>Pela las patatas.</li>
+          <li>Córtalas en láminas finas o dados pequeños.</li>
+          <li>Pica la cebolla en juliana fina.</li>
+          <li>Añade sal a las patatas.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>2. Cocinar las patatas</h3>
+        <ul>
+          <li>Calienta el aceite en una sartén amplia.</li>
+          <li>Incorpora las patatas y la cebolla.</li>
+          <li>Cocina a fuego medio-bajo durante unos 15–20 minutos.</li>
+          <li>Remueve de vez en cuando para evitar que se peguen.</li>
+          <li>Las patatas deben quedar blandas, no crujientes.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>3. Preparar la mezcla</h3>
+        <ul>
+          <li>Escurre las patatas y la cebolla, reservando el aceite.</li>
+          <li>Bate los cuatro huevos en un bol.</li>
+          <li>Incorpora las patatas y la cebolla.</li>
+          <li>Mezcla suavemente.</li>
+          <li>Deja reposar unos 5 minutos para que las patatas absorban parte del huevo.</li>
+        </ul>
+      </article>
+
+      <article class="step">
+        <h3>4. Cuajar la tortilla</h3>
+        <ul>
+          <li>Calienta una cucharadita del aceite reservado en una sartén antiadherente.</li>
+          <li>Vierte la mezcla.</li>
+          <li>Cocina a fuego medio-bajo durante 3–4 minutos.</li>
+          <li>Coloca un plato grande sobre la sartén y dale la vuelta con cuidado.</li>
+          <li>Desliza de nuevo la tortilla en la sartén.</li>
+          <li>Cocina otros 2–3 minutos por el otro lado.</li>
+        </ul>
+        <p>
+          Si prefieres la tortilla muy cuajada, prolonga un poco la cocción.
+          Para una tortilla jugosa, reduce los tiempos, pero utiliza huevos
+          pasteurizados o asegúrate de que el centro alcance una temperatura segura.
+        </p>
+      </article>
+
+      <article class="step">
+        <h3>5. Preparar la ensalada</h3>
+        <ul>
+          <li>Lava y corta la lechuga.</li>
+          <li>Corta el tomate en gajos.</li>
+          <li>Corta el pepino en rodajas.</li>
+          <li>Mezcla todo en una ensaladera.</li>
+          <li>Aliña con aceite, vinagre y sal justo antes de servir.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="conservacion">
+      <h2>Conservación para batch cooking</h2>
+      <div class="store">
+        <article class="store-card">
+          <img
+            src="https://images.openai.com/static-rsc-4/d6X-baiuLi4npK4mKS7C7V6k3XyA3-O0lJOxLWtdOu_CA3N2fgPHWLvFsnf4kpHpQJvlFQhOuPtfORncFxWwX-fpiY2nvUdntdJZc8jCdtXvZe3BypB4KiLqYEYGtJ93_ebx3yGtnBjUvfYXjPD8zhVRNUAxs8S782ew810j8WI?purpose=inline"
+            alt="Tortilla en recipiente"
+            loading="lazy"
+          />
+          <div class="store-card__body">
+            <h3>Nevera</h3>
+            <p>
+              Guarda la tortilla en un recipiente hermético y consúmela en
+              2–3 días. Mantén refrigerada a 4 °C o menos.
+            </p>
+          </div>
+        </article>
+        <article class="store-card">
+          <img
+            src="https://images.openai.com/static-rsc-4/CTgLf_3wk3A-nI8hOFrCa4--p0XHyQcYOhpSuAejnXxuY41OY2zQuzaV9kB6h0FLqydI-bokLpAFIzBok_vr3Lgo0ol5tlVFMEUTRb_ajC0ukw6lrqGLgMev3IyraYg8TF1VrAWwP6qy1wLnx6NAP_U89eirJyyug_X7lr-VESs?purpose=inline"
+            alt="Tortilla de patatas"
+            loading="lazy"
+          />
+          <div class="store-card__body">
+            <h3>Ensalada</h3>
+            <p>
+              Guarda las verduras sin aliñar y prepara el aliño justo antes de
+              comer.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="tips">
+      <h2>Consejos</h2>
+      <div class="tips">
+        <ul>
+          <li>Si quieres una tortilla más jugosa, deja reposar las patatas con el huevo antes de cuajarla.</li>
+          <li>No utilices fuego demasiado alto: se dorará por fuera antes de cocinarse por dentro.</li>
+          <li>Puedes aprovechar el aceite sobrante, una vez colado, para otras preparaciones.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="nav-recipes">
+      <a class="prev" href="06-fajitas-pollo.html">
+        ← Anterior
+        <span>Fajitas de pollo</span>
+      </a>
+      <a class="next" href="08-arroz-salteado-pollo.html">
+        Siguiente →
+        <span>Arroz salteado</span>
+      </a>
+    </div>
+
+    <footer>Receta 7 de 14 · Menú semanal económico</footer>
+  </div>
+</body>
+</html>
