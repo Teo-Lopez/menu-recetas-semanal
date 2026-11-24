@@ -21,7 +21,6 @@
       --accent-soft: #3f634f;
       --highlight: #c4a35a;
       --ok: #2d6a4f;
-      --danger: #8b3a3a;
       --nav-h: 3.25rem;
       --radius: 12px;
       --shadow: 0 10px 30px rgba(28, 42, 34, 0.08);
@@ -271,7 +270,6 @@
       object-fit: cover;
     }
 
-    /* Lista de la compra */
     .shop {
       background: var(--surface);
       border: 1px solid var(--line);
@@ -458,93 +456,26 @@
       border: 1px solid #e8d5a3;
       border-radius: var(--radius);
       padding: 1rem 1.1rem;
-      margin: 1rem 0;
+      margin: 1rem 0 0;
     }
+    .callout p { margin: 0; }
+    .callout p + p { margin-top: 0.65rem; }
     .callout strong { color: var(--accent); }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-    }
-    @media (min-width: 640px) {
-      .stats { grid-template-columns: repeat(4, 1fr); }
-    }
-    .stat {
+    .batch-list {
       background: var(--surface);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 1rem;
-      text-align: center;
+      padding: 1.1rem 1.15rem;
       box-shadow: var(--shadow);
-    }
-    .stat__n {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      margin-bottom: 0.35rem;
-    }
-    .stat__l {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--ink);
-    }
-    .stat__s {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 0.2rem;
-    }
-
-    .tips ol {
-      margin: 0;
-      padding-left: 1.2rem;
-    }
-    .tips li { margin-bottom: 0.65rem; }
-
-    .ideas {
-      display: grid;
-      gap: 0.85rem;
-    }
-    @media (min-width: 640px) {
-      .ideas { grid-template-columns: 1fr 1fr; }
-    }
-    .idea {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-    .idea img {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      object-fit: cover;
-    }
-    .idea__body { padding: 0.85rem 1rem 1rem; }
-    .idea__body h3 {
-      margin: 0 0 0.3rem;
-      font-size: 1.05rem;
-    }
-    .idea__body p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .batch-hero {
-      border-radius: var(--radius);
-      overflow: hidden;
       margin-bottom: 1rem;
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
     }
-    .batch-hero img {
-      width: 100%;
-      max-height: 220px;
-      object-fit: cover;
+    .batch-list ul {
+      margin: 0;
+      padding-left: 1.15rem;
     }
+    .batch-list li { margin-bottom: 0.55rem; color: var(--muted); }
+    .batch-list li strong { color: var(--ink); }
 
     .final {
       background: var(--accent);
@@ -574,8 +505,8 @@
       <a href="#inicio">Inicio</a>
       <a href="#lista">Compra</a>
       <a href="#menu">Menú</a>
+      <a href="#tomate">Tomate</a>
       <a href="#batch">Batch</a>
-      <a href="#raciones">Raciones</a>
       <a href="#tips">Tips</a>
     </div>
   </nav>
@@ -586,62 +517,60 @@
         <span class="hero__eyebrow">Batch cooking · cocina casera</span>
         <h1>Menú semanal económico para 2 personas</h1>
         <p class="hero__lead">
-          Objetivo 40–50 €/semana. 14 comidas equilibradas, con ingredientes que se reutilizan
-          entre recetas para ahorrar sin comer siempre lo mismo.
+          Presupuesto 40–50 €/semana. Cocinas el domingo y tienes comida y cena
+          para toda la semana, con más variedad y tomate donde realmente aporta sabor.
         </p>
         <ul class="chips">
           <li>40–50 €/semana</li>
           <li>14 comidas · 2 personas</li>
-          <li>Sin tomate</li>
+          <li>Con tomate</li>
           <li>Prep. domingo</li>
         </ul>
       </header>
 
       <div class="intro-card">
         <p>
-          Cocina casera, equilibrada y variada. Nada de tomate, recetas sencillas y más
-          legumbres, verduras y huevos para controlar el presupuesto. Pollo como proteína
-          principal, complementado con cerdo y atún. Preparación concentrada el domingo;
-          platos que aguantan bien en nevera o congelador.
+          Menú reajustado manteniendo el presupuesto, incorporando el tomate donde
+          aporta sabor y mejorando algunos platos para darles más variedad. Sigue
+          siendo cocina casera, equilibrada y con ingredientes que se reutilizan.
         </p>
         <ul>
-          <li>Nada de tomate</li>
+          <li>Tomate fresco y triturado donde suma sabor</li>
           <li>Recetas sencillas, sin ingredientes raros</li>
           <li>Más legumbres, verduras y huevos</li>
           <li>Pollo + algo de cerdo y atún</li>
-          <li>Batch cooking el domingo</li>
+          <li>Base el domingo; platos rápidos entre semana</li>
         </ul>
         <p class="budget-note">
-          Presupuesto objetivo: unos <strong>45–48 €</strong> para dos personas
+          Presupuesto objetivo: <strong>40–50 €</strong> para dos personas
           (sin contar aceite, sal y especias de la despensa).
         </p>
       </div>
 
-      <!-- LISTA DE LA COMPRA (arriba en móvil, al final en desktop vía CSS order) -->
+      <!-- LISTA DE LA COMPRA -->
       <section id="lista" aria-labelledby="lista-title">
         <div class="shop">
           <div class="shop__top">
             <h2 id="lista-title">Lista de la compra</h2>
             <div class="shop__meta">
-              <span class="progress" id="shop-progress" aria-live="polite">0/26</span>
-              <button type="button" class="btn-reset" id="shop-reset">Reiniciar compra</button>
+              <span class="progress" id="shop-progress" aria-live="polite">0/28</span>
+              <button type="button" class="btn-reset" id="shop-reset">Reiniciar lista</button>
             </div>
           </div>
           <p class="shop__intro">
-            Ingredientes pensados para varios platos. Marca lo que ya tengas o hayas cogido;
-            el progreso se guarda en este dispositivo.
+            Compra para dos personas. Más tomate (fresco y triturado) para usarlo
+            en varios platos. El progreso se guarda en este dispositivo.
           </p>
 
           <div class="shop-group">
             <div class="shop-group__head">
               <h3>Carnicería y proteínas</h3>
-              <span class="shop-group__price">17–19 €</span>
             </div>
             <label class="shop-item" data-id="pollo">
               <input type="checkbox" />
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
-                <span class="shop-item__name">Pollo (muslos, contramuslos o pechuga)</span>
+                <span class="shop-item__name">Pollo variado</span>
                 <span class="shop-item__qty">1,5 kg</span>
               </span>
             </label>
@@ -650,7 +579,7 @@
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
                 <span class="shop-item__name">Cerdo adobado</span>
-                <span class="shop-item__qty">400 g</span>
+                <span class="shop-item__qty">400–500 g</span>
               </span>
             </label>
             <label class="shop-item" data-id="jamon">
@@ -666,14 +595,14 @@
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
                 <span class="shop-item__name">Chorizo</span>
-                <span class="shop-item__qty">1 pequeño (100 g aprox.)</span>
+                <span class="shop-item__qty">1 pequeño</span>
               </span>
             </label>
             <label class="shop-item" data-id="atun">
               <input type="checkbox" />
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
-                <span class="shop-item__name">Atún en conserva</span>
+                <span class="shop-item__name">Atún</span>
                 <span class="shop-item__qty">2 latas</span>
               </span>
             </label>
@@ -690,8 +619,23 @@
           <div class="shop-group">
             <div class="shop-group__head">
               <h3>Verduras y hortalizas</h3>
-              <span class="shop-group__price">11–13 €</span>
             </div>
+            <label class="shop-item" data-id="tomates-frescos">
+              <input type="checkbox" />
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
+              <span class="shop-item__text">
+                <span class="shop-item__name">Tomates frescos</span>
+                <span class="shop-item__qty">1–1,2 kg</span>
+              </span>
+            </label>
+            <label class="shop-item" data-id="tomate-triturado">
+              <input type="checkbox" />
+              <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
+              <span class="shop-item__text">
+                <span class="shop-item__name">Tomate triturado</span>
+                <span class="shop-item__qty">1 bote de 400 g</span>
+              </span>
+            </label>
             <label class="shop-item" data-id="patatas">
               <input type="checkbox" />
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
@@ -720,7 +664,7 @@
               <input type="checkbox" />
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
-                <span class="shop-item__name">Pimientos</span>
+                <span class="shop-item__name">Pimientos rojo y amarillo</span>
                 <span class="shop-item__qty">2 unidades</span>
               </span>
             </label>
@@ -785,7 +729,6 @@
           <div class="shop-group">
             <div class="shop-group__head">
               <h3>Legumbres, cereales y pan</h3>
-              <span class="shop-group__price">8–10 €</span>
             </div>
             <label class="shop-item" data-id="lentejas">
               <input type="checkbox" />
@@ -832,7 +775,7 @@
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
                 <span class="shop-item__name">Pan</span>
-                <span class="shop-item__qty">1 barra o pan de molde</span>
+                <span class="shop-item__qty">1 barra o paquete</span>
               </span>
             </label>
           </div>
@@ -840,7 +783,6 @@
           <div class="shop-group">
             <div class="shop-group__head">
               <h3>Otros</h3>
-              <span class="shop-group__price">3–5 €</span>
             </div>
             <label class="shop-item" data-id="maiz">
               <input type="checkbox" />
@@ -863,16 +805,16 @@
               <span class="check" aria-hidden="true"><svg viewBox="0 0 16 16"><polyline points="2.5 8.5 6.5 12.5 13.5 3.5"/></svg></span>
               <span class="shop-item__text">
                 <span class="shop-item__name">Leche</span>
-                <span class="shop-item__qty">1 litro (para la crema, opcional)</span>
+                <span class="shop-item__qty">1 litro (opcional)</span>
               </span>
             </label>
           </div>
 
           <div class="shop__footer">
-            <p class="shop__total">Presupuesto estimado: 39–47 €</p>
+            <p class="shop__total">Presupuesto estimado: 43–50 €</p>
             <p class="shop__note">
-              Orientativo para marcas blancas en España. Aceite, sal y especias no incluidos
-              (despensa). Si hay que comprarlos, el primer gasto será algo superior.
+              Orientativo para supermercados económicos y marcas blancas. Depende de
+              ofertas y formatos. Aceite, sal y especias no incluidos (despensa).
             </p>
           </div>
         </div>
@@ -881,31 +823,31 @@
       <!-- MENÚ SEMANAL -->
       <section id="menu" aria-labelledby="menu-title">
         <div class="section-head">
-          <h2 id="menu-title">1. Menú semanal</h2>
-          <p>Comida y cena de lunes a domingo.</p>
+          <h2 id="menu-title">1. Menú semanal actualizado</h2>
+          <p>Comida y cena de lunes a domingo, con tomate donde aporta.</p>
         </div>
 
         <article class="day">
           <div class="day__header">
             <h3>Lunes</h3>
-            <span class="day__tag">Preparado el domingo</span>
+            <span class="day__tag">Batch cooking</span>
           </div>
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/SpZcbPXoBUNVopQSISc3IllJlSXV6iOXybLcw2lcrE1UC1R2-EsViUpMUxQ4AxManwRxRfmqHboZczmFFDkyZtsVSXuAIT_8hRALGfCh_bPhEt3nlgw4Ry0TBKW1EI8WvhLDO3nAC5l9JvOmZ2IzSA6jnWaSB4TyNyzlq1FTwGg?purpose=inline" alt="Pollo al limón con patatas y zanahorias" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/0YEEtbmWfi8FbxoCY2YeqXsuQnd2FVN6lmyv5CFXYJxyaaCqUpANQfs6FFWASHQOO4FeyMtFA7nIxd0e4NHQzx0BYX2cw16oqVCt8JxHltIUY8lFFnh_7zMGqkQVuIsjq649FsFIC30OwYRyFeb0shG7AYnPJLE8EQO0meimVBc?purpose=inline" alt="Pollo al horno con patatas y tomate" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
-              <h4>Pollo al limón con patatas y zanahorias</h4>
-              <p>Pollo al horno con ajo, limón, romero y verduras.</p>
+              <h4>Pollo al horno con patatas y tomate</h4>
+              <p>Muslos de pollo, patatas, zanahoria, cebolla y tomate en rodajas. Ajo y limón.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/1HT2MaA-sgMsKS8c-i4_4QfizuQTBdvcCVOh5me5fw4_Jm1Omfx4RvUtwrDtJhiFTNYcaUariNB1EuWrFUGI4vwdjl35Iy_5xi8VRQVamuo9OKRYE1LQrMEIGFPw8v1_2iFmVbK-SXCzSDS7KzsuUnXc1wu29V-8iXWnozWy9DM?purpose=inline" alt="Guisantes con jamón y huevo" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/BYoo6-BEWEgEhu9Vp65hv7gNzwuCfq738nVHWKdESNkAHK7skLbKREqWd_UAcqfWLD8Sm5xmAU4iayedggido6Skb6vY5sQ36eezfPcG6-ffCzSPPysiYG7iqj_L9TAPc2QzVnF1pZcOQUnxcZIv-UsBphy6tInIbd43lv4LBwodh8-cW_Jw_mwsSMVRRGaI?purpose=inline" alt="Guisantes con jamón y huevo" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
               <h4>Guisantes con jamón y huevo</h4>
-              <p>Tu receta habitual, con un huevo por persona.</p>
+              <p>Cebolla, ajo, tacos de jamón y un poco de tomate rallado. Un huevo por persona.</p>
             </div>
           </div>
         </article>
@@ -913,24 +855,24 @@
         <article class="day">
           <div class="day__header">
             <h3>Martes</h3>
-            <span class="day__tag">Preparado el domingo</span>
+            <span class="day__tag">Batch cooking</span>
           </div>
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/X1QoI6TKY6sJOu-jZQucFXeHS9k8THqYkxtOpBpe0SJZLr3NIe8EuEEBmFow0pOkwJPqPvAo4usY-qx5n8IrHzab_RNnsgTU8eTnQieKHoGNqIDPpNJBrR6v3T-J2kK49dAQpXVxUD2T3v2WWxPQr5I8X0N6XobabexvrcYSb60?purpose=inline" alt="Lentejas estofadas" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/WC3nfpbtNgNup8rghdLbjQHy4UC5rKwAm4nqI2Q4Sb1p48K1AHY7IQEBxpBSjfgO0DrO0DfkefGhosLCIKG9NqZOSSTa3xaYzIowciN6U6urkk4wizaPK6Er0uOsMqInQTNCh4fGVfhi5sxlAw_OGB_fKjrDy1nkVXKrQN13cK0?purpose=inline" alt="Lentejas estofadas" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
               <h4>Lentejas estofadas</h4>
-              <p>Con zanahoria, patata, cebolla y un poco de chorizo.</p>
+              <p>Con chorizo, zanahoria, patata, cebolla, ajo y tomate triturado.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/jIJwHM9cSoIWPQfk-yWCTO5965QGxN1w9u9eO255mJ9QhzCDTa9IHS3am28zsDHVQrjhC6sViCesJaooShtdUw8kHzPANfAUVvYcZZgXDi_-8qHErj8W-0yOi0lBV4Qtpb9iEGq8rnFJ-XyBSnLLg2t-GvyQVv8ReTGSe4mAbKE?purpose=inline" alt="Ensalada de pasta con atún" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/3T2K1AnHi-7fdOb6LzRyJXto3YpMaOk0ixWnYYqCT3aC-fAxBYWDMx5COyCU3AZM3rLrRDTH1-rLJ9EA7xYeaiOXWMNWXyKgpAgQuCNAAGLkU2opSUpYgorSPv-0332mgwehFR12xRLvb82YMO1Bu3Kw9CUAoTLtrCI2SCcOql8?purpose=inline" alt="Ensalada de pasta con atún" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
               <h4>Ensalada de pasta con atún</h4>
-              <p>Pasta, atún, maíz, zanahoria y huevo cocido. Aliño de limón y aceite.</p>
+              <p>Pasta, atún, maíz, tomate fresco, pepino y huevo cocido.</p>
             </div>
           </div>
         </article>
@@ -938,24 +880,24 @@
         <article class="day">
           <div class="day__header">
             <h3>Miércoles</h3>
-            <span class="day__tag">Preparado el domingo</span>
+            <span class="day__tag">Batch cooking</span>
           </div>
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/WLCtYSnpwqmnDdObdzBODsBJ-F_8w5AdhvWUKhXcZqnh3iH1r7rrekKviya-5oL-HlvDKM8PhisPNfwLlv9pvFQFr0ZAsM0vTsz-Z53Ov7Yp1V7QB9Rit8sKXv0TJMPi0z2dpgE_wYniN0KA1Ptk_34AMevVAjSaueDMs-UifkY?purpose=inline" alt="Garbanzos con espinacas" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/izWxPMQTMo0u0pTcD-yCpP3W8u0CELJCFvlfXcUyOS_zAPZxvR-zFRz4YPSHHY5VbDlpApcCzKsVCCShni79SwPGEgvuluiRyN694o3Q7VK_0ZXqeDe3egR-b0PlFnZdGoChOZJRmPWDOAXVvU_KyKdDF23Rlf04ScfeajB-qqw?purpose=inline" alt="Garbanzos con espinacas y tomate" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
-              <h4>Garbanzos con espinacas</h4>
-              <p>Ajo, cebolla, pimentón y garbanzos. Muy económico y saciante.</p>
+              <h4>Garbanzos con espinacas y tomate</h4>
+              <p>Sofrito de cebolla, ajo, tomate y pimentón.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/LDRqSrt5rgDuoPdx_KYwAUk2fpGVbQjeovMHcvyoYSZK6tzFMuzERdz1ICGHDjo5L8AHKN0dfmodmpnRDzJkMOL6G8_-dQx-36MAyeSM0zmubdl_p1I54WU61Rr9KVrPnI6JHgyUJoZ8XsSeiD6cBtWirKtr5GGBQTj3N3IMTqs?purpose=inline" alt="Fajitas de pollo" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/UT1J6B5uBG2zdVV_w7MUlHgQEeFKPD-5XRvdP4PYwi67FPYeWlctHoMONnrIhzdMzuqTy2TE7QhwfPIo1mVO_gEmtbpsWGK0Y3mBVfDpk-Aid_ykQAozSUFTj_lwFitvMCSLH3uL91jzHXYzP7-hrcZx5UA1NyuMdPwPSn_IsnU?purpose=inline" alt="Fajitas de pollo" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
               <h4>Fajitas de pollo</h4>
-              <p>Pollo, pimientos, cebolla, comino y pimentón. Con tortillas.</p>
+              <p>Pollo, pimientos, cebolla y tomate. Comino, pimentón y tortillas.</p>
             </div>
           </div>
         </article>
@@ -963,24 +905,24 @@
         <article class="day">
           <div class="day__header">
             <h3>Jueves</h3>
-            <span class="day__tag">Preparado el domingo</span>
+            <span class="day__tag">Batch cooking</span>
           </div>
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/-SBWmbNuN-A88JGMUNOFeGHDxMlZpH4Pc7aVzOU92eX9mFpe_ck46iK_okJwnkoYwTVrl8xx5PpD7h26P7Xgre-jXowr8KJgogQpahGxuy-WWqbClbjH5GXVcb-h26fh-nSBkb-nmHwSWel5tiif09WJFNHxDm_DPIhSkC0Zqok?purpose=inline" alt="Tortilla de patatas" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/XebdZTjRiM9aLsrSs7P_lSalOu5yV2CBNn69a1UXqj3G3nNHfym9yDM5Gw03VJSrfM6CHIS1ubtFw6q2cfL0JgFYeSNH7TdLfjlF4dWBW1-KcfR7EjrO6WLjMFGq_N4p-pdVk7qKNOUvvlbrJQLKaPHO7k3KeWr5Fw4Dd-YMM4U?purpose=inline" alt="Tortilla de patatas con ensalada" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
-              <h4>Tortilla de patatas</h4>
-              <p>Con ensalada de zanahoria y pepino.</p>
+              <h4>Tortilla de patatas con ensalada</h4>
+              <p>Tomate fresco, pepino y aceite de oliva como acompañamiento.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/N7-qkqlSTLN_Oo1y3K_cO7lbqEJ6dMwl3KZOeD8-bH7gBuprZK6V272--dAWkfmbTfZoHxx1IBugsq55RLkko0FqKznO5z6l8_FhHJnmcNhxQIgbgVQ5S7Xa8meyKmhdxBZeLTSjqQXqdB2_iH_K3y0NBNQm7_YrcG_P88WAG0k?purpose=inline" alt="Arroz salteado con pollo" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/LFwAle1wcIr9isITrPAe6QESiq9PNi-ICoOFg-RjHKLnbP4Uggu9FqL8nosb2Mb-FHzLpyLAsSlKNHBkl-qcJOAs3fAjC8SOCAZZ4Il1m6y0etRpRMEhYUL30knMn5qpeIk0kpb9hQ9xRWCMV3MSVNQVLQFHHVDjCerIPti0QfE?purpose=inline" alt="Arroz salteado con pollo y verduras" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
               <h4>Arroz salteado con pollo y verduras</h4>
-              <p>Arroz, pollo, zanahoria, guisantes y ajo.</p>
+              <p>Zanahoria, guisantes, cebolla y huevo. Un poco de salsa de soja opcional.</p>
             </div>
           </div>
         </article>
@@ -988,24 +930,24 @@
         <article class="day">
           <div class="day__header">
             <h3>Viernes</h3>
-            <span class="day__tag">Preparado el domingo</span>
+            <span class="day__tag">Batch cooking</span>
           </div>
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/OMzcMoycGvkIHIhhsKzl4xA88jXkfnqQpan2Bi4EwIchvjKZc16OGmNIgI8TRpqMsPL4j4OL94TTYzohsAvUC2Rc2pToUPVJ8XBnR-aaCXD8vPFSZwK3a79QCDMVykJ9pDWGqB0PEWnKn6Ga2HWOs0AYmLkgMLNWRLyzx2OltN0?purpose=inline" alt="Crema de zanahoria y patata" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/h7aDOA12Fv-2EE_ZyLQbgK9qOySsZdAB52y_HaUmEI7UWGQ8zmo75434kEsEa4U6QbClcChx-lQcWhVXa885t-mVG9ayDFzX-a1jw492bO_GZvx2NHGt6lf3rDvAAt4N_8JyZ_KeqFUMoPrUR7FXICGf2VFHb1cfXY-Y2HtV0Lg?purpose=inline" alt="Crema de verduras" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
-              <h4>Crema de zanahoria y patata</h4>
-              <p>Con dos huevos cocidos entre los dos, y pan.</p>
+              <h4>Crema de verduras</h4>
+              <p>Zanahoria, patata, cebolla y tomate. Acompañada de huevos cocidos y pan.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/-haJiKQC_WZEAJPt6rw-Ajrs5fDSTNzk3h7G9VuUlfiGnA0s8ZBShlr-bc5uyGznz0oJUuuvMAlfRFwlelIld1ss2KTVGmWWUNfx_Fd5WbFlXVAjN5USh7XMWvNx761tP3lLxFPrPXgzueSiHRVuwr_w9ESqPkzz-YCXJYP3TUg?purpose=inline" alt="Pollo crujiente rebozado" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/B1Ewyxio1I1wBgphP8mjUPz6L4cbUk8_86NMMb2YKtoABdAFu4964ZpNsnM_-PBEjLIEdfGLrzYYrysQ-pmFKMV9P_rhaPVQO0yK-v81u8bI0sVrQ1qpQcHMgmtgnCLhujWZPRym_KTD5dlG0pGjHOPz1trPqOtabE4Q0Z4oq9k?purpose=inline" alt="Pollo crujiente rebozado" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
               <h4>Pollo crujiente rebozado</h4>
-              <p>Panko o pan rallado, con verduras asadas.</p>
+              <p>Panko o pan rallado, con ensalada de tomate y pepino.</p>
             </div>
           </div>
         </article>
@@ -1018,19 +960,19 @@
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/qf8P-lCPHQ0ylkwBrTS4tcB-MrxFJxH8hb4CxdhWA-8MZUMJ3XYhC2bomcx67qHrbam08Snx7FYGmhFYxx0DHFQdSdXwSzFSOL9KiB_ZKNrUXoe1V2z-Cm6s-PJNVBotDytZuEu5HraMokSArNTokLRCbQVHTcYBXEtT1GotBNo?purpose=inline" alt="Cerdo adobado con patatas" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/DZ7KKnswc5jlNqjOqCFy0a3Mznn7WNR8wFPuiorKDjK3_ZAWJhMgW_2k-O3p-S87G_kGXiFm5hA0qE5G-cGJAb0e5c9Q27u8qEYc9low5VPn5Dh7P9Hlv2EQp_4HTHW5dVlb45BRW3nJrHvgLboKBFE4Dwi4y6mYj5GVdfDu7mI?purpose=inline" alt="Cerdo adobado con patatas" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
               <h4>Cerdo adobado con patatas</h4>
-              <p>Aprovechamos tu receta habitual.</p>
+              <p>Con tomate aliñado y orégano.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/0f3hkgANUPC6hzILJ2PwBLRV_JYWNqJjxOnUaUsPdSzkawyr2_OKMJniemIYjnkDqiFKcHD3_KVgqhUMt8P7NwveuGUiNIjC68v-aGdovsZAgpxLgj0J13-iEbgBuTiE61Fn7Nb1T874IwIlJlc6zY9AkaFAfWgt1cOr6VebArAuYjgMCSBoap_WFJraT5Pd?purpose=inline" alt="Revuelto de calabacín y champiñones" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/ER9sZqG0AU2QgSsGlvdDXdJZsdEOh7-gJy1OI__OHCRmBaUA1Gxckhcj0GFO0Y5-edC5YXmiWPRTG7wQnfoUEkHCo3l3r4Z6DZjF22yo25P8pA3__-JwloZL4YbulScDbUV79WEcWuNAv1_-LoHPBk3iCG7PyABILmL26kLA01c?purpose=inline" alt="Revuelto de calabacín y champiñones" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
               <h4>Revuelto de calabacín y champiñones</h4>
-              <p>Con huevos y un poco de pan.</p>
+              <p>Con cebolla y tomate salteado.</p>
             </div>
           </div>
         </article>
@@ -1043,176 +985,99 @@
           <div class="meals">
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/NzoQAZvk4UMpa24avQB55OtHzpTLx7X41xewWTLfS43PME-Vk-jRrs_vCaDKUQ7OszkDQFbcjtdzQ1jJUt_jx0s5lDzQyBZPIhJPk36hGMD0elviiItvZg18XyKGIt1egytdnq68C0NSrlYkuSmeh7usuGjignT9SBp0BQJKxbs?purpose=inline" alt="Arroz al horno con pollo" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/r-e8dsXjOCfAnsLU-XgruN2HFuMNIWmpgkWiHYOy6ERe9jNKuo6ywLIOlK3pRHHQGLfh-GkLDO4U0q-ZxhmiNjBON-2hQM1jSCgyk0IN4uTofSmqkchH7uY_ZO2jkHSNhPq5C1O6E5DvgQiuer9EkANDAkMd_mixcnCQjr9jvIs9g0lK0rVr7pcOBbCDHWLP?purpose=inline" alt="Arroz con pollo" loading="lazy" />
               </div>
               <p class="meal__label">Comida</p>
-              <h4>Arroz al horno con pollo y verduras</h4>
-              <p>Aprovechando pollo y verduras que hayas reservado.</p>
+              <h4>Arroz con pollo</h4>
+              <p>Sofrito de tomate, cebolla y ajo, con pollo y verduras.</p>
             </div>
             <div class="meal">
               <div class="meal__img">
-                <img src="https://images.openai.com/static-rsc-4/3fqn7XNGe2uP-8FGzMiKs3rYk7Kqjr6KwSpX26LMuhlD6kmzMHf8KQt7BR_HFIzF5n0KITIHZLAdXGns0BXIlsXV09PZdJ3M8LgV22Nt9cUXzJdWfoI1_MxT4pp1jIyMqysSuNS_ZXJXwoxew_coOyxSqfRjerYEfWxJJobqq_I?purpose=inline" alt="Sopa de verduras con garbanzos" loading="lazy" />
+                <img src="https://images.openai.com/static-rsc-4/s6rH6jrDikGUD1V_otJ2p_t_i__DLNzNz87aFvB8B_q9mSOgCRf0iJ_gsnuwwgio0ZTbA2h9RkGzPzZfwGFfdLTyh6OhEzunhzmaacddbEWVUkE-RwQyi0pgEfv2jlhEHz8AXNfsS3KUcZkDCXopYxBD7LQXXfEFs-MvxZ2xI74?purpose=inline" alt="Sopa de garbanzos y verduras" loading="lazy" />
               </div>
               <p class="meal__label">Cena</p>
-              <h4>Sopa de verduras con garbanzos</h4>
-              <p>Ligera, sencilla y perfecta para terminar la semana.</p>
+              <h4>Sopa de garbanzos y verduras</h4>
+              <p>Caldo con zanahoria, patata, garbanzos y tomate.</p>
             </div>
           </div>
         </article>
       </section>
 
+      <!-- REPARTO DE TOMATE -->
+      <section id="tomate" aria-labelledby="tomate-title">
+        <div class="section-head">
+          <h2 id="tomate-title">3. Cómo repartir el tomate</h2>
+          <p>Para no comprar de más ni que se estropee.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Uso</th><th>Cantidad aproximada</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Pollo al horno</td><td>2 tomates</td></tr>
+              <tr><td>Guisantes con jamón</td><td>1 tomate</td></tr>
+              <tr><td>Lentejas</td><td>100 g triturado</td></tr>
+              <tr><td>Pasta con atún</td><td>2 tomates</td></tr>
+              <tr><td>Garbanzos con espinacas</td><td>150 g triturado</td></tr>
+              <tr><td>Fajitas</td><td>1 tomate</td></tr>
+              <tr><td>Ensalada con tortilla</td><td>2 tomates</td></tr>
+              <tr><td>Crema de verduras</td><td>100 g triturado</td></tr>
+              <tr><td>Cerdo adobado</td><td>2 tomates</td></tr>
+              <tr><td>Revuelto</td><td>1 tomate</td></tr>
+              <tr><td>Arroz con pollo</td><td>150 g triturado</td></tr>
+              <tr><td>Sopa de garbanzos</td><td>100 g triturado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
       <!-- BATCH COOKING -->
       <section id="batch" aria-labelledby="batch-title">
         <div class="section-head">
-          <h2 id="batch-title">3. Batch cooking: domingo</h2>
-          <p>Dejar preparadas las bases de los 14 platos en unas 2,5–3 horas.</p>
+          <h2 id="batch-title">4. Ajuste al batch cooking</h2>
+          <p>No hace falta preparar absolutamente todo el domingo.</p>
         </div>
 
-        <div class="batch-hero">
-          <img src="https://images.openai.com/static-rsc-4/4Mk4nEYkaHsSEjSof7AYRe0x5LJzRy67tNmHJ7Sa3qd0IG25J9RT0T1GvE7Xc_oyEKcXpEAy--H1jwXAW_XR1QINoptBBGz_5eK2fiz8AEjVyNT0t9t0otf7kVQSOS-dvIjkhc8q00jdH7Toz5NyiHfjfHr4ql9BqVilJ8oGcSE?purpose=inline" alt="Meal prep de la semana" loading="lazy" />
-        </div>
-
-        <h3 style="font-family:var(--font-display);color:var(--accent);margin:0 0 0.65rem;font-size:1.15rem;">Orden de trabajo</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Tiempo</th><th>Preparación</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>00:00</td><td>Lavar, pelar y cortar todas las verduras</td></tr>
-              <tr><td>00:15</td><td>Poner las lentejas a cocinar</td></tr>
-              <tr><td>00:20</td><td>Preparar garbanzos con espinacas</td></tr>
-              <tr><td>00:30</td><td>Meter pollo, patatas y zanahorias al horno</td></tr>
-              <tr><td>00:50</td><td>Preparar crema de zanahoria y patata</td></tr>
-              <tr><td>01:10</td><td>Cocinar fajitas y guisantes con jamón</td></tr>
-              <tr><td>01:40</td><td>Preparar arroz y pasta</td></tr>
-              <tr><td>02:00</td><td>Preparar tortilla y pollo rebozado</td></tr>
-              <tr><td>02:30</td><td>Porcionar, enfriar y almacenar</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 style="font-family:var(--font-display);color:var(--accent);margin:1.25rem 0 0.65rem;font-size:1.15rem;">Qué dejar preparado y qué cocinar al momento</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Preparación</th><th>El domingo</th><th>Al comer</th></tr>
-            </thead>
-            <tbody>
-              <tr><td>Lentejas</td><td>Completas</td><td>Recalentar</td></tr>
-              <tr><td>Garbanzos</td><td>Completos</td><td>Recalentar</td></tr>
-              <tr><td>Pollo al limón</td><td>Completo</td><td>Recalentar</td></tr>
-              <tr><td>Guisantes</td><td>Completos</td><td>Añadir huevo</td></tr>
-              <tr><td>Fajitas</td><td>Relleno completo</td><td>Calentar tortillas</td></tr>
-              <tr><td>Pasta con atún</td><td>Ingredientes preparados</td><td>Mezclar y aliñar</td></tr>
-              <tr><td>Tortilla</td><td>Completa</td><td>Servir</td></tr>
-              <tr><td>Arroz salteado</td><td>Ingredientes preparados</td><td>Saltear</td></tr>
-              <tr><td>Crema</td><td>Completa</td><td>Recalentar</td></tr>
-              <tr><td>Pollo rebozado</td><td>Rebozado y congelado</td><td>Cocinar</td></tr>
-              <tr><td>Cerdo adobado</td><td>Porcionado y congelado</td><td>Cocinar</td></tr>
-              <tr><td>Revuelto</td><td>Verduras cortadas</td><td>Añadir huevos</td></tr>
-              <tr><td>Arroz al horno</td><td>Ingredientes porcionados</td><td>Cocinar</td></tr>
-              <tr><td>Sopa</td><td>Base preparada</td><td>Terminar de cocinar</td></tr>
-            </tbody>
-          </table>
+        <div class="batch-list">
+          <ul>
+            <li>
+              <strong>Domingo:</strong> lentejas, garbanzos, pollo al horno, guisantes,
+              fajitas, crema y verduras asadas.
+            </li>
+            <li>
+              <strong>Congelar:</strong> las raciones del viernes al domingo, una vez
+              enfriadas correctamente.
+            </li>
+            <li>
+              <strong>Entre semana:</strong> pasta, arroz, huevos, tortilla y revueltos
+              cuando toque. Son rápidos y mejoran mucho recién hechos.
+            </li>
+          </ul>
         </div>
 
         <div class="callout">
           <p>
-            <strong>Arroz:</strong> no cocinar el de toda la semana el domingo. Mejor raciones
-            de arroz seco el día que se consuma, o congelarlo justo después de cocinar.
-            El arroz cocido en nevera: enfriar rápido y consumir en 24 h.
+            <strong>Arroz cocido:</strong> conviene enfriarlo rápidamente y consumirlo
+            en 24 horas si se guarda refrigerado.
           </p>
-          <p style="margin:0.65rem 0 0;">
-            Guarda en nevera los primeros 2–3 días y congela el resto. No dejes comida cocinada
-            horas a temperatura ambiente.
-          </p>
-        </div>
-      </section>
-
-      <!-- RACIONES -->
-      <section id="raciones" aria-labelledby="raciones-title">
-        <div class="section-head">
-          <h2 id="raciones-title">4. Cómo repartir las raciones</h2>
-          <p>Grupos de preparaciones para no quedarte corto ni tirar comida.</p>
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <div class="stat__n">4</div>
-            <div class="stat__l">Raciones de legumbres</div>
-            <div class="stat__s">Lentejas y garbanzos</div>
-          </div>
-          <div class="stat">
-            <div class="stat__n">6</div>
-            <div class="stat__l">Raciones de pollo</div>
-            <div class="stat__s">Horno, fajitas, arroz y rebozado</div>
-          </div>
-          <div class="stat">
-            <div class="stat__n">4</div>
-            <div class="stat__l">Raciones de verduras</div>
-            <div class="stat__s">Guisantes, crema y guarniciones</div>
-          </div>
-          <div class="stat">
-            <div class="stat__n">4</div>
-            <div class="stat__l">Raciones variadas</div>
-            <div class="stat__s">Pasta, tortilla, cerdo y revuelto</div>
-          </div>
         </div>
       </section>
 
       <!-- TIPS -->
       <section id="tips" aria-labelledby="tips-title">
         <div class="section-head">
-          <h2 id="tips-title">5. Recomendaciones</h2>
-          <p>Normas útiles y ideas para próximas semanas.</p>
+          <h2 id="tips-title">Siguientes semanas</h2>
+          <p>Misma estructura, recetas rotativas.</p>
         </div>
 
-        <div class="intro-card tips" style="margin-bottom:1.25rem;">
-          <ol>
-            <li><strong>Proteína en cada comida:</strong> pollo, huevos, legumbres, atún o cerdo.</li>
-            <li><strong>Verduras en comida y cena:</strong> zanahoria, calabacín, guisantes y espinacas dan mucho juego.</li>
-            <li><strong>Embutidos y fritos con moderación:</strong> chorizo, jamón y pollo rebozado como ocasional, no base diaria.</li>
-          </ol>
-        </div>
-
-        <h3 style="font-family:var(--font-display);color:var(--accent);margin:0 0 0.75rem;font-size:1.15rem;">Para variar en próximas semanas</h3>
-        <div class="ideas">
-          <article class="idea">
-            <img src="https://images.openai.com/static-rsc-4/qzTXKPJpauO0YlzGNqdWUVrW57Pi8vq5hndCTryxgU6YVM_EpoU6AYnz5sD4oxh4D2S3dY3FgQKnJ6Tea8Hzs4kK997TGkSYXwbcMil7oopj4YNPwzv0CTPjhMmGmSYQU6O4ryncIZyDVem7j_FaDoTe8qn12tQGtN205cKQWzs?purpose=inline" alt="Patatas rellenas de atún" loading="lazy" />
-            <div class="idea__body">
-              <h3>Patatas rellenas de atún</h3>
-              <p>Muy económicas y fáciles de preparar.</p>
-            </div>
-          </article>
-          <article class="idea">
-            <img src="https://images.openai.com/static-rsc-4/mX7QR1uZMA1m4SgxAHxHpwrBM1RVVtn5Pe17LGKgmwFiSeshbfRxPmNognw2E9VisoQtTo9nl_1kgSAg8in4v0I9iMRXxPH0F-m8MqGmAzahG3qjO-VBtVbc69ZAKxGR7C_iUHhsQQktzmVJ77GteP-h74hIY3Ue2S8ZesvK-3A?purpose=inline" alt="Alubias con verduras" loading="lazy" />
-            <div class="idea__body">
-              <h3>Alubias con verduras</h3>
-              <p>Alternativa a las lentejas.</p>
-            </div>
-          </article>
-          <article class="idea">
-            <img src="https://images.openai.com/static-rsc-4/dkdtFnFfdwdQKTcsIQvekp_gu_jZQpycD5E09GeshaGkTG2sW09zY-oabZsUDA2zD8uL9jwWOgMmXx20LUuIvS2TAIVYM3zuWX09zg320kc8BSc_plYCy94H0GuqpZMaLoZCXD15jPYuNmsjVXCRVRpuSg4JmseRwmN14PG3BcY?purpose=inline" alt="Sopa de pollo y fideos" loading="lazy" />
-            <div class="idea__body">
-              <h3>Sopa de pollo y fideos</h3>
-              <p>Aprovecha restos de pollo y verduras.</p>
-            </div>
-          </article>
-          <article class="idea">
-            <img src="https://images.openai.com/static-rsc-4/_sjMoaJhAyzyTRVRVCEVFpVvYIS0T2G39fuLOeMC0wJ4bv--fHPqny6rQ8fzTaqgNam5dfWKiR-jUg1AWYcXzzTAaOmihccAHChJlHu4vcSjlw6DDpQu-zaerIBv00COt7bMprEfwaKyRVBsojOHMP7Is8Zs9YRrtZZ1lyoSZHA?purpose=inline" alt="Tortitas de verduras" loading="lazy" />
-            <div class="idea__body">
-              <h3>Tortitas de verduras</h3>
-              <p>Otra forma de aprovechar verduras.</p>
-            </div>
-          </article>
-        </div>
-
-        <div class="final" style="margin-top:1.25rem;">
-          <h3>Consejo final</h3>
+        <div class="final">
+          <h3>Propuesta</h3>
           <p>
-            Usa este menú como primera semana de referencia. Después puedes montar un ciclo
-            de cuatro semanas con recetas distintas y ingredientes comunes: un mes entero
-            de comidas y cenas por unos 180–200 € para dos personas.
+            Mantener una estructura similar y rotar las recetas. Por ejemplo: una semana
+            albóndigas en salsa de tomate, otra macarrones con carne picada, otra patatas
+            guisadas con carne y otra arroz con verduras y atún. Así montas un recetario
+            rotativo de unas 50 recetas sin disparar el presupuesto.
           </p>
         </div>
       </section>
@@ -1223,7 +1088,7 @@
 
   <script>
     (function () {
-      var STORAGE_KEY = "menu-semanal-compra-v1";
+      var STORAGE_KEY = "menu-semanal-compra-v2";
       var items = Array.prototype.slice.call(document.querySelectorAll(".shop-item"));
       var progressEl = document.getElementById("shop-progress");
       var resetBtn = document.getElementById("shop-reset");
